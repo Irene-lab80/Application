@@ -3,6 +3,6 @@ import style from './Footer.module.scss';
 
 export const Footer = () => (
   <footer className={style.wrapper}>
-    Footer
+    <div className={style.container}>Footer</div>
   </footer>
 );

@@ -1,5 +1,8 @@
 export {
   AppleIcon,
+  LogInIcon,
+  SignUpIcon,
+  LanguageIcon,
 } from './icons';
 
 export {

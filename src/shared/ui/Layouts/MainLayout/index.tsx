@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Footer, Header } from 'shared';
-import style from './Main-layout.module.scss';
+import style from './MainLayout.module.scss';
 
 export const MainLayout = () => (
   <div className={style.wrapper}>

@@ -8,7 +8,7 @@ import {
 import { platformApi } from './platformApi';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://jsonplaceholder.typicode.com/',
+  baseUrl: 'https://reqres.in/api/',
 });
 
 export const refreshTokenQuery: BaseQueryFn<
