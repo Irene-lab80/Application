@@ -13,4 +13,5 @@ export {
 
 export {
   useAuth,
+  useScrollDirection,
 } from './lib';
