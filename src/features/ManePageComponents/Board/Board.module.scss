@@ -1,0 +1,10 @@
+@import '../../../shared/styles/mixins.scss';
+
+.wrapper {
+  display: flex;
+  @include columns($width: calc((100% - 4 * 10px) / 4));
+  @include media-breakpoint-down(xxl2){
+    flex-direction: column;
+    gap: 22px;
+  }
+}

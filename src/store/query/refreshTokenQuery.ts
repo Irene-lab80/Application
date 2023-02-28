@@ -8,7 +8,7 @@ import {
 import { platformApi } from './platformApi';
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://reqres.in/api/',
+  baseUrl: 'https://tourmaline-past-hall.glitch.me',
 });
 
 export const refreshTokenQuery: BaseQueryFn<

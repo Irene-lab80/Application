@@ -4,7 +4,9 @@ import ErrorBoundary from 'app/ErrorBoundary';
 import { AppRoutes } from './app/Routes';
 
 export const App = () => (
-  <ErrorBoundary>
-    <AppRoutes />
-  </ErrorBoundary>
+  <div>
+    <ErrorBoundary>
+      <AppRoutes />
+    </ErrorBoundary>
+  </div>
 );

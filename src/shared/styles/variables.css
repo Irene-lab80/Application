@@ -1,11 +1,16 @@
 :root {
   /* Colors */
-  --black: #161616;
-  --white: #ffffff;
+  --color-text: #424242;
+  --color-text-footer: rgba(66, 66, 66, 0.6);
+  --color-text-button: rgba(66, 66, 66);
+  --color-background: #FFFFFF;
+  --color-background-footer: #F2F2F2;
+  --color-background-header: #FFFFFF;
+  --color-button: #4877F2;
+  --color-button-colored: #FFAC28;
+  --color-text-light: #F2F2F2;
 
   /* Fonts */
-  --font-h1: 700 200px/100% Manrope, sans-serif;
-
-  /* delay */
-  --hover-delay: 0.3s;
+  --font-default: 'Jost', sans-serif;
+  --font-accent: 'Montserrat', sans-serif;
 }

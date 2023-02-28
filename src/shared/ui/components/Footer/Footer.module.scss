@@ -1,10 +1,33 @@
+@import '../../../styles/mixins.scss';
+
 .wrapper {
-  background: #212F3E;
+  background: var(--color-background-footer);
   height: 100px;
-  color: #C8D6E5;
+  color: var(--color-text-footer);
 }
 
 .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
   max-width: 1200px;
-  margin: 0 auto;  
+  margin: 0 auto; 
+  @include media-breakpoint-down(xxl){
+    padding: 0 20px;
+  } 
+}
+
+.left {
+  display: flex;
+}
+
+.left_text {
+  border-left: 1px solid var(--color-text-footer);
+  padding-left: 16px;
+  margin-left: 16px;
+}
+
+.right {
+
 }

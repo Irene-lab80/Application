@@ -1,18 +1,33 @@
 import { platformApi } from '../platformApi';
 
+type TProduct = {
+  date: string;
+  description: string;
+  id: string;
+  location: string;
+  price: number;
+  publish: string;
+  src: string;
+  tag: string;
+  tel: string;
+  title: string;
+  username: string;
+  views: number;
+}
+
 export const extendedApi = platformApi.injectEndpoints({
   endpoints: (build) => ({
-    getPosts: build.query<any, void>({
+    getProducts: build.query<TProduct[], void>({
       query: () => ({
-        url: '/users',
+        url: '/products',
       }),
     }),
-    getOnePost: build.query<any, string>({
+    getOneProduct: build.query<TProduct, string>({
       query: (id: string) => ({
-        url: `/posts/${id}`,
+        url: `/products/${id}`,
       }),
     }),
   }),
 });
 
-export const { useGetPostsQuery, useGetOnePostQuery } = extendedApi;
+export const { useGetProductsQuery, useGetOneProductQuery } = extendedApi;

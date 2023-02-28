@@ -1,9 +1,10 @@
+@import '../../../../styles/mixins.scss';
+
 .wrapper {
   position: fixed;
   width: 100%;
   height: 80px;
-  background: #16697a;
-  color: #fefefe;
+  background: var(--color-background-header)
 }
 
 .wrapper_hide {
@@ -44,5 +45,76 @@
   }
   &:last-child {
     padding-right: 0;
+  }
+}
+
+.search_wrapper {
+  position: relative;
+}
+
+.search_desktop {
+  width: 469px;
+  @include media-breakpoint-down(md){
+    display: none;
+  }
+}
+
+.mobile_search {
+  display: none;
+  @include media-breakpoint-down(md){
+    display: inline-flex;
+    position: absolute;
+
+  }
+}
+
+.searchMobileIcon {
+  display: none;
+  position: relative;
+
+  @include media-breakpoint-down(md) {
+    display: inline-flex;
+  }
+}
+
+.searchMobile {
+  position: absolute;
+  top: 40px;
+  display: flex;
+  width: 50%;
+}
+
+
+.searchMobile > span > span {
+  width: 160px;
+}
+
+.auth_button {
+  display: flex;
+  align-items: center;
+  svg path {
+    transition: 0.3s;
+  }
+  &:hover .auth_text {
+    color: var(--color-button);
+  }
+  &:hover svg path {
+    stroke: var(--color-button);
+  }
+  @include media-breakpoint-down(md){
+    display: none;
+  }
+}
+
+.auth_text {
+  margin-left: 12px;
+  transition: 0.3s;
+}
+
+.burger_menu {
+  display: none;
+  margin-left: 24px;
+  @include media-breakpoint-down(md){
+    display: inline-flex;
   }
 }
