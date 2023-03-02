@@ -8,3 +8,4 @@ export { UserIcon } from './UserIcon';
 export { BurgerMenuIcon } from './BurgerMenuIcon';
 export { CloseIcon } from './CloseIcon';
 export { SearchIcon } from './SearchIcon';
+export { EyeIcon } from './EyeIcon';

@@ -10,12 +10,16 @@ export {
   BurgerMenuIcon,
   CloseIcon,
   SearchIcon,
+  EyeIcon,
 
   // components
   Header,
   Footer,
   Logo,
   Button,
+  Card,
+  ViewsNumber,
+  ShowTelButton,
 
   // layout
   MainLayout,

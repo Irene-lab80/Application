@@ -22,12 +22,40 @@ export const extendedApi = platformApi.injectEndpoints({
         url: '/products',
       }),
     }),
-    getOneProduct: build.query<TProduct, string>({
-      query: (id: string) => ({
+    getOneProduct: build.query<TProduct, any>({
+      query: (args) => {
+        const { id } = args;
+        return {
         url: `/products/${id}`,
-      }),
+        params: id,
+      };
+},
+    }),
+    // updateViews: build.mutation<any, any>({
+    //   query: (id: any, body: any) => ({
+    //     url: `/products/${id}`,
+    //     method: 'PATCH',
+    //     body,
+    //   }),
+    // })
+    createProduct: build.mutation<TProduct, {id: number, views: number}>({
+      query: (args) => {
+        const { id, views } = args;
+        console.log('args:', args);
+        return {
+        url: `/products/${id}`,
+        method: 'PATCH',
+        body: views,
+        // params: {  },
+      };
+},
     }),
   }),
 });
 
-export const { useGetProductsQuery, useGetOneProductQuery } = extendedApi;
+export const {
+  useGetProductsQuery,
+  useGetOneProductQuery,
+  useCreateProductMutation,
+  // useUpdateViewsMutation,
+} = extendedApi;

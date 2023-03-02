@@ -1,4 +1,4 @@
 export {
-  Section,
-  Board,
+  Banner,
+  Feed,
 } from './ManePageComponents';

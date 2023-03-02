@@ -7,6 +7,7 @@ export enum paths {
   REDIRECT = '/auth',
   AUTH = 'auth',
   INNER = 'inner',
+  PRODUCT_PAGE = 'product/:id',
   NOTFOUND = '*',
 }
 
@@ -28,9 +29,16 @@ export const configRoutes: TRoute[] = [
     children: [
       {
         id: '1.1',
-        isPrivate: true,
+        isPrivate: false,
         element: Pages.MainPage,
         index: true,
+      },
+      {
+        id: '1.2',
+        isPrivate: false,
+        element: Pages.ProductPage,
+        path: paths.PRODUCT_PAGE,
+
       },
       {
         id: '1.3',

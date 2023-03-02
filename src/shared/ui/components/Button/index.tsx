@@ -8,8 +8,9 @@ type TProps = AntButtonPropsOmit & {
   children: string | React.ReactNode;
   size?: 'large' | 'medium' | 'small';
   type?: 'default' | 'arrow' | 'colored';
+  onClick?: () => void;
 }
 
-export const Button = ({ children, size = 'medium', type = 'default' }: TProps) => (
-  <ButtonAntd className={`${buttonSize[size]} ${buttonType[type]}`}>{children}</ButtonAntd>
+export const Button = ({ children, size = 'medium', type = 'default', onClick }: TProps) => (
+  <ButtonAntd className={`${buttonSize[size]} ${buttonType[type]}`} onClick={onClick}>{children}</ButtonAntd>
 );
