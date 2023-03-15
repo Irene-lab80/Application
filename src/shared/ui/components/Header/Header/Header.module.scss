@@ -90,28 +90,6 @@
   width: 160px;
 }
 
-.auth_button {
-  display: flex;
-  align-items: center;
-  svg path {
-    transition: 0.3s;
-  }
-  &:hover .auth_text {
-    color: var(--color-button);
-  }
-  &:hover svg path {
-    stroke: var(--color-button);
-  }
-  @include media-breakpoint-down(md){
-    display: none;
-  }
-}
-
-.auth_text {
-  margin-left: 12px;
-  transition: 0.3s;
-}
-
 .burger_menu {
   display: none;
   margin-left: 24px;

@@ -5,9 +5,11 @@ import { MainLayout } from 'shared';
 export enum paths {
   MAIN = '/',
   REDIRECT = '/auth',
-  AUTH = 'auth',
+  AUTH = '/auth',
+  REG = '/reg',
   INNER = 'inner',
   PRODUCT_PAGE = 'product/:id',
+  MY_ADS = '/my-ads',
   NOTFOUND = '*',
 }
 
@@ -42,6 +44,18 @@ export const configRoutes: TRoute[] = [
       },
       {
         id: '1.3',
+        isPrivate: false,
+        element: Pages.AuthPage,
+        path: paths.AUTH,
+      },
+      {
+        id: '1.4',
+        isPrivate: false,
+        element: Pages.RegistrationPage,
+        path: paths.REG,
+      },
+      {
+        id: '1.5',
         isPrivate: false,
         element: Pages.NotFoundPage,
         path: paths.NOTFOUND,

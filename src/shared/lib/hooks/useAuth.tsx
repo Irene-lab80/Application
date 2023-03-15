@@ -1,5 +1,8 @@
+import Cookies from 'universal-cookie';
+
+export const cookies = new Cookies();
+
 export const useAuth = () => {
-  // получу токен из стора
-  const token = 'token';
+  const token = cookies.get('token');
   return !!token;
 };

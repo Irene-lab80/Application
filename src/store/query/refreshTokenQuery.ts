@@ -4,12 +4,18 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-
-import { platformApi } from './platformApi';
+import { cookies } from '../../shared/lib/hooks/useAuth';
 
 const baseQuery = fetchBaseQuery({
   // baseUrl: 'https://tourmaline-past-hall.glitch.me',
   baseUrl: 'http://localhost:3000',
+  credentials: 'include',
+  prepareHeaders: (headers) => {
+    const token = cookies.get('token');
+    if (token) {
+      headers.set('Authorization', `Bearere ${token}`);
+    }
+  },
 });
 
 export const refreshTokenQuery: BaseQueryFn<
@@ -17,14 +23,6 @@ export const refreshTokenQuery: BaseQueryFn<
   unknown,
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
-  let result = await baseQuery(args, api, extraOptions);
-  if (result.error && result.error.status === 429) {
-    const refreshResult: any = await baseQuery('/users/refresh', api, extraOptions);
-    if (refreshResult.data) {
-      result = await baseQuery(args, api, extraOptions);
-    } else {
-      api.dispatch(platformApi.util.resetApiState());
-    }
-  }
+  const result = await baseQuery(args, api, extraOptions);
   return result;
 };

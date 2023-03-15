@@ -5,3 +5,7 @@ export { Button } from './Button';
 export { Card } from './Card';
 export { ViewsNumber } from './ViewsNumber';
 export { ShowTelButton } from './ShowTelButton';
+export { FormAuth } from './FormAuth';
+export { FormReg } from './FormReg';
+export { FormHeader } from './FormHeader';
+export { GoBackBtn } from './GoBackBtn';

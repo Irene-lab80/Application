@@ -1,0 +1,29 @@
+// @import '../../../assets/styles/constants';
+
+.wrapper {
+  width: 364px;
+}
+
+.form {
+  padding: 24px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 32px;
+  border-bottom: 1px solid rgba(42, 47, 55, 0.12);
+  // color: $color-text-dark-m;
+}
+
+.button_active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 32px;
+  border-bottom: 2px solid var(--color-button);
+  font-weight: 700;
+}

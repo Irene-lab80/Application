@@ -9,8 +9,9 @@ type TProps = AntButtonPropsOmit & {
   size?: 'large' | 'medium' | 'small';
   type?: 'default' | 'arrow' | 'colored';
   onClick?: () => void;
+  htmlType?: string;
 }
 
-export const Button = ({ children, size = 'medium', type = 'default', onClick }: TProps) => (
-  <ButtonAntd className={`${buttonSize[size]} ${buttonType[type]}`} onClick={onClick}>{children}</ButtonAntd>
+export const Button = ({ children, size = 'medium', type = 'default', onClick, htmlType = 'button' }: TProps) => (
+  <ButtonAntd htmlType={htmlType} className={`${buttonSize[size]} ${buttonType[type]}`} onClick={onClick}>{children}</ButtonAntd>
 );

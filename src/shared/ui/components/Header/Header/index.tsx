@@ -1,13 +1,13 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-import { paths } from 'app/Routes/configRoutes';
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useScrollDirection, Logo, Button, UserIcon } from 'shared';
+import { useNavigate } from 'react-router-dom';
+import { useScrollDirection, Logo, Button, useAuth } from 'shared';
 import { Search } from '../../Search';
 import { MobileMenu } from '../MobileMenu';
 import style from './Header.module.scss';
 import { BurgerButton } from '../BurgerButton';
 import { SearchButton } from '../SearchButton';
+import DropDownProfileBtn from '../../DropDownProfileBtn/Index';
+import { ProfileButton } from '../../ProfileButton';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +15,7 @@ export const Header = () => {
 
   const navigate = useNavigate();
   const scrollDirection = useScrollDirection();
+  const isAuth = useAuth();
 
   const hideMenu = () => {
     setMenuOpen(false);
@@ -61,10 +62,11 @@ export const Header = () => {
         </div>
         <Button type="colored">Подать объявление</Button>
         <div>
-          <Link to={paths.AUTH} className={style.auth_button}>
-            <UserIcon />
-            <span className={style.auth_text}>Войти</span>
-          </Link>
+          {!isAuth ?
+            <ProfileButton />
+          :
+            <DropDownProfileBtn />}
+
           <div className={style.burger_menu}>
             <BurgerButton isOpen={menuOpen} showMenu={showMenu} hideMenu={hideMenu} />
             {menuOpen && <MobileMenu />}

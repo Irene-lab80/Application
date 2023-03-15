@@ -9,3 +9,8 @@ export { BurgerMenuIcon } from './BurgerMenuIcon';
 export { CloseIcon } from './CloseIcon';
 export { SearchIcon } from './SearchIcon';
 export { EyeIcon } from './EyeIcon';
+export { BackArrowIcon } from './BackArrowIcon';
+export { BookIcon } from './BookIcon';
+export { ExitIcon } from './ExitIcon';
+export { ProfileLockIcon } from './ProfileLockIcon';
+export { LoggedInIcon } from './LoggedInIcon';

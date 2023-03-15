@@ -11,6 +11,11 @@ export {
   CloseIcon,
   SearchIcon,
   EyeIcon,
+  BackArrowIcon,
+  BookIcon,
+  ExitIcon,
+  ProfileLockIcon,
+  LoggedInIcon,
 
   // components
   Header,
@@ -20,6 +25,10 @@ export {
   Card,
   ViewsNumber,
   ShowTelButton,
+  FormAuth,
+  FormReg,
+  FormHeader,
+  GoBackBtn,
 
   // layout
   MainLayout,
