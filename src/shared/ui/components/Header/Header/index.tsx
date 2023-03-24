@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useScrollDirection, Logo, Button, useAuth } from 'shared';
-import { Search } from '../../Search';
+import { useScrollDirection, Logo, Button, useAuth, Search, SearchIcon } from 'shared';
 import { MobileMenu } from '../MobileMenu';
 import style from './Header.module.scss';
 import { BurgerButton } from '../BurgerButton';
@@ -42,13 +41,16 @@ export const Header = () => {
     navigate('/search');
     hideSearch();
   };
+
   return (
     <header className={`${scrollDirection === 'down' ? style.wrapper_hide : style.wrapper_show}`}>
       <nav className={style.container}>
-        <Logo />
+        <div className={style.logo}>
+          <Logo />
+        </div>
         <div className={style.search_wrapper}>
           <div className={style.search_desktop}>
-            <Search onSearch={() => searchHandler} />
+            <Search onSearch={() => searchHandler} enterButton="Искать" prefix={<SearchIcon />} />
           </div>
           <div className={style.searchMobileIcon}>
             <SearchButton
@@ -60,8 +62,10 @@ export const Header = () => {
             <Search onSearch={() => searchHandler} className={style.searchMobile} />}
           </div>
         </div>
-        <Button type="colored">Подать объявление</Button>
-        <div>
+        <div className={style.button}>
+          <Button type="colored">Подать объявление</Button>
+        </div>
+        <div className={style.burger_wrapper}>
           {!isAuth ?
             <ProfileButton />
           :

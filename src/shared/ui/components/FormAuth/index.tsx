@@ -7,37 +7,44 @@ import { cookies } from 'shared/lib/hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { setUser } from 'store/slice/userSlice/slice';
 import { paths } from 'app/Routes/configRoutes';
+import { useLocalStorage } from 'shared/lib/hooks';
 import style from './FormAuth.module.scss';
 import { Button } from '../Button';
 
 export const FormAuth = () => {
+  const [userName, setUserName] = useLocalStorage('userName', '');
   const [loginUser, { data, isSuccess }] = useLoginUserMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { pathname, state } = useLocation();
+
   const onFinish = async (values: {email:string, password: string}) => {
     try {
       await loginUser(values);
     } catch (err) {
-      console.log(values);
+      console.error(err);
     }
   };
+
+  useEffect(() => {
+    if (userName !== '') {
+      navigate(paths.MAIN);
+    }
+  }, [userName]);
 
   useEffect(() => {
     if (data) {
       cookies.set('token', data.acessToken);
       dispatch(setUser({ id: data.user.id, email: data.user.email, firstName: data.user.name, secondName: data.user.secondName }));
-      navigate(paths.MAIN);
+      setUserName(`${data.user.name} ${data.user.secondName}`);
     }
   }, [data]);
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <div className={style.wrapper}>
       {
         isSuccess
         ?
-        'Успешно! Сейчас выбудете перенаправлены на главную страницу.'
+        'Успешно! Сейчас вы будете перенаправлены на главную страницу.'
         :
         <Form
           name="auth-form"
@@ -69,11 +76,11 @@ export const FormAuth = () => {
           <Form.Item>
             <NavLink className={style.forgotPassword} to="/get-pass">Забыли пароль?</NavLink>
           </Form.Item>
-
           <Form.Item>
             <Button type="default" htmlType="submit">Войти</Button>
           </Form.Item>
         </Form>
+
       }
     </div>
   );

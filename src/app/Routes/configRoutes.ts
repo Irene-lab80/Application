@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import * as Pages from 'pages';
 import { MainLayout } from 'shared';
+import { UserLayout } from 'shared/ui/Layouts/UserLayout';
 
 export enum paths {
   MAIN = '/',
@@ -11,6 +12,7 @@ export enum paths {
   PRODUCT_PAGE = 'product/:id',
   MY_ADS = '/my-ads',
   NOTFOUND = '*',
+  USER = '/user',
 }
 
 export type TRoute = {
@@ -59,6 +61,19 @@ export const configRoutes: TRoute[] = [
         isPrivate: false,
         element: Pages.NotFoundPage,
         path: paths.NOTFOUND,
+      },
+    ],
+  },
+  {
+    id: '2',
+    isPrivate: false,
+    element: UserLayout,
+    children: [
+      {
+        id: '2.1',
+        isPrivate: true,
+        element: Pages.UserPage,
+        path: paths.USER,
       },
     ],
   },

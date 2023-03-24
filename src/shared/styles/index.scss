@@ -68,3 +68,13 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: #c7cbcb; 
 }
+
+.error {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+.success {
+  color: var(--color-blue);
+  font-weight: 600;
+}

@@ -16,6 +16,11 @@
   @include media-breakpoint-down(xxl){
     padding: 0 20px;
   } 
+  @include media-breakpoint-down(m-sm){
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  } 
 }
 
 .left {
@@ -26,8 +31,4 @@
   border-left: 1px solid var(--color-text-footer);
   padding-left: 16px;
   margin-left: 16px;
-}
-
-.right {
-
 }

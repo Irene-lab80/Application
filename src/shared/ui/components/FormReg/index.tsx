@@ -40,8 +40,8 @@ export const FormReg = () => {
 
   return (
     <div>
-      {isSuccess && 'Регистрация прошла успешно!'}
-      {isError && 'Произошла ошибка!'}
+      {isSuccess && <div className="success">Регистрация прошла успешно!</div>}
+      {isError && <div className="error">Произошла ошибка!</div>}
       <Form
         name="reg-form"
         initialValues={{ remember: true }}

@@ -1,3 +1,5 @@
+import { UserLayout } from 'shared/ui/Layouts/UserLayout';
+
 export {
   // icons
   AppleIcon,
@@ -16,6 +18,8 @@ export {
   ExitIcon,
   ProfileLockIcon,
   LoggedInIcon,
+  FilterIcon,
+  ThreeDotsIcon,
 
   // components
   Header,
@@ -29,9 +33,13 @@ export {
   FormReg,
   FormHeader,
   GoBackBtn,
+  Sidebar,
+  Search,
 
   // layout
   MainLayout,
+  UserLayout,
+  AuthLayout,
  } from './ui';
 
 export {

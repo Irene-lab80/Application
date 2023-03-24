@@ -9,3 +9,5 @@ export { FormAuth } from './FormAuth';
 export { FormReg } from './FormReg';
 export { FormHeader } from './FormHeader';
 export { GoBackBtn } from './GoBackBtn';
+export { Sidebar } from './Sidebar';
+export { Search } from './Search';

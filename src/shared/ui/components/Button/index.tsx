@@ -7,7 +7,7 @@ type AntButtonPropsOmit = Omit<AntButtonProps, 'size' | 'type'>;
 type TProps = AntButtonPropsOmit & {
   children: string | React.ReactNode;
   size?: 'large' | 'medium' | 'small';
-  type?: 'default' | 'arrow' | 'colored';
+  type?: 'default' | 'arrow' | 'colored' | 'light';
   onClick?: () => void;
   htmlType?: string;
 }

@@ -15,6 +15,8 @@ export {
   ExitIcon,
   ProfileLockIcon,
   LoggedInIcon,
+  FilterIcon,
+  ThreeDotsIcon,
 } from './icons';
 
 export {
@@ -29,6 +31,12 @@ export {
   FormReg,
   FormHeader,
   GoBackBtn,
+  Sidebar,
+  Search,
 } from './components';
 
-export { MainLayout } from './Layouts';
+export {
+  MainLayout,
+  AuthLayout,
+  UserLayout,
+} from './Layouts';

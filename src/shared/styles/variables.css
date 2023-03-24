@@ -6,9 +6,14 @@
   --color-background: #FFFFFF;
   --color-background-footer: #F2F2F2;
   --color-background-header: #FFFFFF;
-  --color-button: #4877F2;
+  --color-blue: #4877F2;
   --color-button-colored: #FFAC28;
   --color-text-light: #F2F2F2;
+  --color-border: rgba(42, 47, 55, 0.1);
+  --color-grey: rgba(42, 47, 55, 0.08);
+  --color-grey-xl: rgba(42, 47, 55, 0.6);
+  --color-grey-l: rgba(42, 47, 55, 0.4);
+  --color-error: rgb(213, 43, 43);
 
   /* Fonts */
   --font-default: 'Jost', sans-serif;

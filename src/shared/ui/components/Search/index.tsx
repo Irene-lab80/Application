@@ -1,17 +1,25 @@
-import React from 'react';
-import { Input } from 'antd';
+import React, { ReactElement } from 'react';
+import { Input, InputProps } from 'antd';
 import { SearchIcon } from 'shared/ui/icons';
-import style from './Search.module.scss';
+import { searchType } from './constants';
 
 const AntdSearch = Input.Search;
 
-type TProps = {
-  onSearch: () => void;
+type TProps = InputProps & {
+  onSearch: (value: string) => void;
   className?: string;
+  enterButton?: string | ReactElement;
+  placeholder?: string;
+  type?: 'default' | 'light';
 }
 
-export const Search = ({ onSearch, className }: TProps) => (
+export const Search = ({ onSearch, className, enterButton, placeholder, type = 'default' }: TProps) => (
   <div className={className}>
-    <AntdSearch className={style.wrapper} onSearch={onSearch} enterButton="Искать" prefix={<SearchIcon />} />
+    <AntdSearch
+      className={`${searchType[type]}`}
+      onSearch={onSearch}
+      enterButton={enterButton}
+      placeholder={placeholder}
+    />
   </div>
 );

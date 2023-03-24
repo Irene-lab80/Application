@@ -14,3 +14,5 @@ export { BookIcon } from './BookIcon';
 export { ExitIcon } from './ExitIcon';
 export { ProfileLockIcon } from './ProfileLockIcon';
 export { LoggedInIcon } from './LoggedInIcon';
+export { FilterIcon } from './FilterIcon';
+export { ThreeDotsIcon } from './ThreeDotsIcon';

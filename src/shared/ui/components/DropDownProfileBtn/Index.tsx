@@ -1,39 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Dropdown } from 'antd';
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { BookIcon, ExitIcon } from 'shared/ui/icons';
-import { getUser, logout } from 'store/slice/userSlice';
-import { cookies } from 'shared/lib/hooks/useAuth';
+import { cookies, useAuth } from 'shared/lib/hooks/useAuth';
 import { paths } from 'app/Routes/configRoutes';
+import { useLocalStorage } from 'shared/lib/hooks';
 import style from './DropDownProfileBtn.module.scss';
 import { ProfileButton } from '../ProfileButton';
 
 const DropDownProfileBtn = () => {
-  const user = useSelector(getUser);
-  const { firstName, secondName } = user;
-  const AVATAR_NAME = `${firstName?.slice(0, 1)}${secondName?.slice(0, 1)}`;
-  const dispatch = useDispatch();
-  const exitHandler = () => {
-    dispatch(logout);
+  const [avatarName, setAvatarName] = useState('');
+  const [userName, setUserName] = useLocalStorage('userName', '');
+  const isAuth = useAuth();
+  const navigate = useNavigate();
+
+  const exitHandler = async () => {
+    await setUserName('');
     cookies.remove('token');
-    console.log(user);
+    navigate(paths.MAIN);
   };
+
+  useEffect(() => {
+    if (userName !== '') {
+      const [name, surname] = userName.split(' ');
+      setAvatarName(`${name[0]}${surname[0]}`);
+    }
+  }, [userName]);
 
   const items = [
     {
       key: '1',
       label: (
         <div className={style.menu_item}>
-          <span className={style.avatar}>{firstName ? AVATAR_NAME : 'Г'}</span>
-          <span>{firstName || 'Гость'}</span>
+          <span className={style.avatar}>{isAuth ? avatarName : 'Г'}</span>
+          <span>{isAuth ? userName : 'Гость'}</span>
         </div>
       ),
     },
     {
       key: '2',
       label: (
-        <Link to={paths.MY_ADS} className={style.menu_item}>
+        <Link to={paths.USER} className={style.menu_item}>
           Мои объявления
         </Link>
       ),
@@ -42,9 +49,9 @@ const DropDownProfileBtn = () => {
     {
       key: '3',
       label: (
-        <Link to={paths.MAIN} className={style.menu_item} onClick={exitHandler}>
+        <button type="button" className={style.menu_item} onClick={exitHandler}>
           Выйти
-        </Link>
+        </button>
       ),
       icon: <ExitIcon />,
     },

@@ -7,10 +7,10 @@
     transition: 0.3s;
   }
   &:hover .auth_text {
-    color: var(--color-button);
+    color: var(--color-blue);
   }
   &:hover svg path {
-    stroke: var(--color-button);
+    stroke: var(--color-blue);
   }
   @include media-breakpoint-down(md){
     display: none;

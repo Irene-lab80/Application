@@ -6,6 +6,7 @@
   height: 80px;
   background: var(--color-background-header);
   z-index: 100;
+  padding: 0 20px;
 }
 
 .wrapper_hide {
@@ -51,21 +52,27 @@
 
 .search_wrapper {
   position: relative;
+  @include media-breakpoint-down(sm){
+    display: flex;
+    align-items: center;
+  }
 }
 
 .search_desktop {
   width: 469px;
-  @include media-breakpoint-down(md){
+  @include media-breakpoint-down(xl){
+    width: 100%;
+  }
+  @include media-breakpoint-down(sm){
     display: none;
   }
 }
 
 .mobile_search {
   display: none;
-  @include media-breakpoint-down(md){
+  @include media-breakpoint-down(sm){
     display: inline-flex;
     position: absolute;
-
   }
 }
 
@@ -73,7 +80,7 @@
   display: none;
   position: relative;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(sm) {
     display: inline-flex;
   }
 }
@@ -83,11 +90,14 @@
   top: 40px;
   display: flex;
   width: 50%;
+  @include media-breakpoint-down(sm){
+    order: 0;
+  }
 }
 
 
 .searchMobile > span > span {
-  width: 160px;
+  min-width: 270px;
 }
 
 .burger_menu {
@@ -95,5 +105,23 @@
   margin-left: 24px;
   @include media-breakpoint-down(md){
     display: inline-flex;
+  }
+}
+
+.burger_wrapper {
+  @include media-breakpoint-down(sm){
+    order: 2;
+  }
+}
+
+.button {
+  @include media-breakpoint-down(md){
+    display: none;
+  }
+}
+
+.logo {
+  @include media-breakpoint-down(sm){
+    order: 1;
   }
 }
