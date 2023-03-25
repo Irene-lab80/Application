@@ -7,8 +7,8 @@ import {
 import { cookies } from '../../shared/lib/hooks/useAuth';
 
 const baseQuery = fetchBaseQuery({
-  // baseUrl: 'https://tourmaline-past-hall.glitch.me',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://intriguing-ultra-mango.glitch.me',
+  // baseUrl: 'http://localhost:3000',
   credentials: 'include',
   prepareHeaders: (headers) => {
     const token = cookies.get('token');

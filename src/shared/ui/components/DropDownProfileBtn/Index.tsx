@@ -5,6 +5,7 @@ import { BookIcon, ExitIcon } from 'shared/ui/icons';
 import { cookies, useAuth } from 'shared/lib/hooks/useAuth';
 import { paths } from 'app/Routes/configRoutes';
 import { useLocalStorage } from 'shared/lib/hooks';
+import { toast } from 'react-toastify';
 import style from './DropDownProfileBtn.module.scss';
 import { ProfileButton } from '../ProfileButton';
 
@@ -17,6 +18,7 @@ const DropDownProfileBtn = () => {
   const exitHandler = async () => {
     await setUserName('');
     cookies.remove('token');
+    toast.success('Выход выполнен успешно!');
     navigate(paths.MAIN);
   };
 

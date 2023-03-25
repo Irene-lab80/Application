@@ -1,6 +1,7 @@
 import { paths } from 'app/Routes/configRoutes';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { useLocalStorage } from 'shared/lib/hooks';
 import { cookies } from 'shared/lib/hooks/useAuth';
 import { BookIcon, ExitIcon } from 'shared/ui/icons';
@@ -14,6 +15,7 @@ export const Sidebar = () => {
   const exitHandler = async () => {
     await setUserName('');
     cookies.remove('token');
+    toast.success('Выход выполнен успешно!');
     navigate(paths.MAIN);
   };
 

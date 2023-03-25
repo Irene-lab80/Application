@@ -1,28 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Checkbox, Form, Input } from 'antd';
-import { useLoginUserMutation, useRegisterUserMutation } from 'store/query/AuthQuery';
+import { TAuth, TReg, useLoginUserMutation, useRegisterUserMutation } from 'store/query/AuthQuery';
 import { useDispatch } from 'react-redux';
-import { setUser } from 'store/slice/userSlice/slice';
+import { setUser, TUser } from 'store/slice/userSlice/slice';
+import { toast } from 'react-toastify';
 import style from './FormReg.module.scss';
 import { Button } from '../Button';
 
 export const FormReg = () => {
-  const [register, { isSuccess, isError }] = useRegisterUserMutation();
-  // const [login, data] = useLoginUserMutation();
-
+  const [register, data] = useRegisterUserMutation();
+  // const [login] = useLoginUserMutation();
   // const dispatch = useDispatch();
   const [form] = Form.useForm();
-  const onFinish = async (values: {email: string, password: string}) => {
+  const onFinish = async (values: TReg) => {
     try {
       await register(values);
-      if (isSuccess) {
-        // dispatch(setUser({ id: values.id, email: values.email }));
+      if (data.isSuccess) {
+        // console.log(data);
+        // dispatch(setUser({
+        //   firstName: data.name,
+        //   secondName: data.secondName,
+        //   id: data.id,
+        //   email: data.email,
+        // }));
         form.resetFields();
       }
     } catch (err) {
-      console.log(err);
-    } finally {
-      console.log(values);
+      console.error(err);
     }
   };
 
@@ -38,10 +42,21 @@ export const FormReg = () => {
     }
   };
 
+  useEffect(() => {
+    if (data.error) {
+    // @ts-ignore
+      toast.error(data.error?.data);
+    }
+    if (data.isSuccess) {
+      toast.success('Регистрация прошла успешно!');
+    }
+    if (data.isLoading) {
+      toast('Подождите..');
+    }
+  }, [data.isLoading]);
+
   return (
     <div>
-      {isSuccess && <div className="success">Регистрация прошла успешно!</div>}
-      {isError && <div className="error">Произошла ошибка!</div>}
       <Form
         name="reg-form"
         initialValues={{ remember: true }}
@@ -138,6 +153,5 @@ export const FormReg = () => {
         </Form.Item>
       </Form>
     </div>
-
   );
 };

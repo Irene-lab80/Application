@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type TUser = {
+export type TUser = {
   id: string | null;
   email: string | null;
-  firstName: string | null;
+  name: string | null;
   secondName: string | null;
 }
 
@@ -16,7 +16,7 @@ const initialState: TUserState = {
   user: {
     id: null,
     email: null,
-    firstName: null,
+    name: null,
     secondName: null,
   },
   accessToken: null,
