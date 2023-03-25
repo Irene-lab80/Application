@@ -20,7 +20,7 @@ export const extendedApi = platformApi.injectEndpoints({
     getProducts: build.query<any, any>({
       query: (page) => ({
         url: '/products',
-        params: { _page: page },
+        params: { _page: page, _limit: 12 },
       }),
       transformResponse: (response: any, meta: any) => (
         { response, totalCount: Number(meta?.response?.headers.get('X-Total-Count')) }
