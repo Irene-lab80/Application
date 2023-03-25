@@ -26,7 +26,7 @@ export const Sidebar = () => {
 
   return (
     <div className={style.wrapper}>
-      <div className={style.element}>
+      <div className={style.header}>
         <div className={style.avatar}>{avataName}</div>
         <div>
           <div className={style.name}>{userName}</div>

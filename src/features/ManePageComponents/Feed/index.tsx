@@ -5,7 +5,7 @@ import { useGetProductsQuery } from 'store/query/Posts';
 import style from './Feed.module.scss';
 
 export const Feed = () => {
-  const { data, isLoading, isError } = useGetProductsQuery();
+  const { data, isLoading, isError } = useGetProductsQuery(1);
 // const [updateViews, { error, isSuccess }] = useUpdateViewsMutation();
   return (
     <div className={style.feedwrapper}>
@@ -17,7 +17,7 @@ export const Feed = () => {
         </nav> */}
       {isLoading && <Spin />}
       {isError && <div>Error</div>}
-      { data && data.map((el) => (
+      { data && data.response.map((el: any) => (
         <Card
           id={el.id}
           key={el.id}

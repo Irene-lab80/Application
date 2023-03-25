@@ -17,6 +17,8 @@ export {
   LoggedInIcon,
   FilterIcon,
   ThreeDotsIcon,
+  TrashBinIcon,
+  PensilIcon,
 } from './icons';
 
 export {

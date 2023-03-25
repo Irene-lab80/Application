@@ -20,6 +20,8 @@ export {
   LoggedInIcon,
   FilterIcon,
   ThreeDotsIcon,
+  TrashBinIcon,
+  PensilIcon,
 
   // components
   Header,

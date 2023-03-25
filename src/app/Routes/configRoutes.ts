@@ -9,6 +9,10 @@ export enum paths {
   AUTH = '/auth',
   REG = '/reg',
   INNER = 'inner',
+  PRODUCT = 'product',
+  PRODUCT_EDIT = 'product-edit',
+  PRODUCT_CREATE = 'product-create',
+  PRODUCT_EDIT_PAGE = 'product-edit/:id',
   PRODUCT_PAGE = 'product/:id',
   MY_ADS = '/my-ads',
   NOTFOUND = '*',
@@ -42,7 +46,6 @@ export const configRoutes: TRoute[] = [
         isPrivate: false,
         element: Pages.ProductPage,
         path: paths.PRODUCT_PAGE,
-
       },
       {
         id: '1.3',
@@ -74,6 +77,18 @@ export const configRoutes: TRoute[] = [
         isPrivate: true,
         element: Pages.UserPage,
         path: paths.USER,
+      },
+      {
+        id: '2.2',
+        isPrivate: false,
+        element: Pages.ProductEditPage,
+        path: paths.PRODUCT_EDIT_PAGE,
+      },
+      {
+        id: '2.3',
+        isPrivate: false,
+        element: Pages.ProductCreatePage,
+        path: paths.PRODUCT_CREATE,
       },
     ],
   },

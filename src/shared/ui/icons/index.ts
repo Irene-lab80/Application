@@ -16,3 +16,5 @@ export { ProfileLockIcon } from './ProfileLockIcon';
 export { LoggedInIcon } from './LoggedInIcon';
 export { FilterIcon } from './FilterIcon';
 export { ThreeDotsIcon } from './ThreeDotsIcon';
+export { PensilIcon } from './PensilIcon';
+export { TrashBinIcon } from './TrashBinIcon';

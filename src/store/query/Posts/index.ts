@@ -17,10 +17,15 @@ type TProduct = {
 
 export const extendedApi = platformApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<TProduct[], void>({
-      query: () => ({
+    getProducts: build.query<any, any>({
+      query: (page) => ({
         url: '/products',
+        params: { _page: page },
       }),
+      transformResponse: (response: any, meta: any) => (
+        { response, totalCount: Number(meta?.response?.headers.get('X-Total-Count')) }
+        ),
+        providesTags: ['Posts'],
     }),
     getOneProduct: build.query<TProduct, any>({
       query: (args) => {
@@ -29,7 +34,15 @@ export const extendedApi = platformApi.injectEndpoints({
         url: `/products/${id}`,
         params: id,
       };
-},
+      },
+    }),
+    updateProduct: build.mutation<TProduct, any>({
+      query: ({ id, payload }) => ({
+        url: `/products/${id}`,
+        body: payload,
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+      }),
     }),
     // updateViews: build.mutation<any, any>({
     //   query: (id: any, body: any) => ({
@@ -38,17 +51,20 @@ export const extendedApi = platformApi.injectEndpoints({
     //     body,
     //   }),
     // })
-    createProduct: build.mutation<TProduct, {id: number, views: number}>({
-      query: (args) => {
-        const { id, views } = args;
-        console.log('args:', args);
-        return {
+    createProduct: build.mutation<TProduct, TProduct>({
+      query: (payload) => ({
+        url: '/products',
+        body: payload,
+        method: 'POST',
+      }),
+    }),
+    deleteProduct: build.mutation<TProduct, string>({
+      query: (id) => ({
         url: `/products/${id}`,
-        method: 'PATCH',
-        body: views,
-        // params: {  },
-      };
-},
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      }),
+      invalidatesTags: ['Posts'],
     }),
   }),
 });
@@ -58,4 +74,6 @@ export const {
   useGetOneProductQuery,
   useCreateProductMutation,
   // useUpdateViewsMutation,
+  useUpdateProductMutation,
+  useDeleteProductMutation,
 } = extendedApi;
