@@ -66,6 +66,12 @@ export const extendedApi = platformApi.injectEndpoints({
       }),
       invalidatesTags: ['Posts'],
     }),
+    searchProduct: build.query<TProduct, string>({
+      query: (q) => ({
+        url: '/products',
+        params: { q },
+      }),
+    }),
   }),
 });
 
@@ -76,4 +82,5 @@ export const {
   // useUpdateViewsMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
+  useLazySearchProductQuery,
 } = extendedApi;

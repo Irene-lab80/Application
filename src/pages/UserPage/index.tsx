@@ -1,15 +1,17 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 import { paths } from 'app/Routes/configRoutes';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, AddIcon, Search, FilterIcon, SearchIcon, ThreeDotsIcon } from 'shared';
-import { KebabMenu } from 'shared/ui/components/KebabMenu';
-import { useDeleteProductMutation, useGetProductsQuery } from 'store/query/Posts';
+import { Button, AddIcon, Search, FilterIcon, SearchIcon } from 'shared';
+import { useDeleteProductMutation, useGetProductsQuery, useLazySearchProductQuery } from 'store/query/Posts';
 import { toast } from 'react-toastify';
 import style from './UserPage.module.scss';
+import { Content } from './Content';
 
 export const UserPage = () => {
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
   const [openCard, setOpenCard] = useState<string | boolean>(false);
@@ -19,24 +21,27 @@ export const UserPage = () => {
 
   const navigate = useNavigate();
 
+  const { data: products, isLoading, error } = useGetProductsQuery(page);
+  const [deleteProduct, { isLoading: dLoading, error: dError, isSuccess: dSuccess }] = useDeleteProductMutation();
+  const [trigger, data] = useLazySearchProductQuery();
+
   const onAddHandler = () => {
     navigate(`/${paths.PRODUCT_CREATE}`);
   };
 
-  const onSearch = (value: string) => console.log(value);
-
-  const { data } = useGetProductsQuery(page);
-  const [deleteProduct, { isSuccess: dSuccess, isError: dError }] = useDeleteProductMutation();
+  const onSearch = async (value: string) => {
+    setSearch(value);
+  };
 
   const onPageChange = (page: number) => {
     setPage(page);
   };
 
   useEffect(() => {
-    if (data) {
-      setTotalItems(data.totalCount);
+    if (products) {
+      setTotalItems(products.totalCount);
     }
-  }, [data]);
+  }, [products]);
 
   useEffect(() => {
     const closeDropdown = (e: MouseEvent) => {
@@ -51,6 +56,22 @@ export const UserPage = () => {
 
     return () => document.body.removeEventListener('click', closeDropdown);
   }, []);
+
+  useEffect(() => {
+    if (dError) {
+      // @ts-ignore
+      toast.error(dError?.data);
+    }
+    if (dSuccess) {
+      toast.success('Успешно удалено!');
+    }
+  }, [dLoading]);
+
+  useEffect(() => {
+    if (search !== '') {
+      trigger(search);
+    }
+  }, [search]);
 
   return (
     <div>
@@ -88,30 +109,17 @@ export const UserPage = () => {
             <div>Дата публикации</div>
             <div>Публикация</div>
           </div>
-          {data && data.response.map((product: any) => (
-            <div className={style.card}>
-              <div className={style.card_title}>{product.title}</div>
-              <div>{product.tag}</div>
-              <div>{new Date(product.date).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
-              <div>{product.publish ? 'да' : 'нет'}</div>
-              <button
-                onClick={openCard ? () => setOpenCard(false) : () => setOpenCard(product.id)}
-                className={style.menu_button}
-                type="button"
-              >
-                <ThreeDotsIcon />
-              </button>
-              <KebabMenu
-                isOpen={openCard === product.id}
-                id={product.id}
-                onDelete={() => deleteProduct(product.id)}
-              />
-            </div>
-          ))}
+          {isLoading && <Spin />}
+          {products?.response &&
+          <Content
+            deleteProduct={deleteProduct}
+            isLoading={data.isLoading}
+            openCard={openCard}
+            setOpenCard={setOpenCard}
+            content={search === '' ? products?.response : data?.data}
+          />}
         </div>
       </div>
-      {dSuccess && <div className="success">Успешно удалено!</div>}
-      {dError && <div className="error">При удалении произошла ошибка!</div>}
     </div>
   );
 };

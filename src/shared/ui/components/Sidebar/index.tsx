@@ -1,6 +1,6 @@
 import { paths } from 'app/Routes/configRoutes';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useLocalStorage } from 'shared/lib/hooks';
 import { cookies } from 'shared/lib/hooks/useAuth';
@@ -35,10 +35,10 @@ export const Sidebar = () => {
           <div className={style.title}>Личный кабинет</div>
         </div>
       </div>
-      <div className={style.element_active}>
+      <NavLink to={paths.USER} className={style.element_active}>
         <span className={style.icon}><BookIcon /></span>
         <span>Объявления</span>
-      </div>
+      </NavLink>
       <button className={style.element} type="button" onClick={exitHandler}>
         <span className={style.icon}><ExitIcon /></span>
         <span>Выход</span>

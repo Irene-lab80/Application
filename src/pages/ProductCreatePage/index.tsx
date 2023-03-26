@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, GoBackBtn } from 'shared';
 import { useCreateProductMutation } from 'store/query/Posts';
 import { Form, Input, Select } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import TextArea from 'antd/lib/input/TextArea';
+import { toast } from 'react-toastify';
 import style from './ProductCreatePage.module.scss';
 
 export const ProductCreatePage = () => {
@@ -28,12 +29,27 @@ export const ProductCreatePage = () => {
     { label: 'Товары для дома', value: 'Товары для дома' },
   ];
 
+  useEffect(() => {
+    if (data.isSuccess) {
+      toast.success('Успешно!');
+    }
+    if (data.isError) {
+      toast.success('Ошибка!');
+    }
+  }, [data.isLoading]);
+
   return (
     <div>
       <GoBackBtn>Вернуться назад</GoBackBtn>
       <div className={style.header}>
         <div className={style.title}>{title}</div>
-        <Button htmlType="submit" onClick={() => form.submit()}>Сохранить</Button>
+        <Button
+          htmlType="submit"
+          onClick={() => form.submit()}
+          loading={data.isLoading}
+        >
+          Сохранить
+        </Button>
       </div>
       <Form
         onFinish={onFinish}
@@ -77,8 +93,6 @@ export const ProductCreatePage = () => {
           </FormItem>
         </Input.Group>
       </Form>
-      {data.isSuccess && 'Успешно'}
-      {data.isError && 'Ошибка'}
     </div>
   );
 };
