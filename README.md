@@ -1,5 +1,7 @@
 Deployment: https://application-r88w-1b87010dz-irene-lab80.vercel.app/
 
+Please note that it might take a while for the backend to wake up due to glitch projects hosting rules.
+
 # Sticker
 An app created with React/Redux/TypeScript
 
