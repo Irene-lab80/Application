@@ -15,7 +15,7 @@ type TProps = {
 export const Content = ({ content, isLoading, openCard, setOpenCard, deleteProduct }: TProps) => (
   <div>
     {isLoading && <Spin />}
-    {content && content?.length !== 0 ? content.map((product: any) => (
+    {content && content.length !== 0 ? content.map((product: any) => (
       <div className={style.card}>
         <div className={style.card_title}>{product.title}</div>
         <div>{product.tag}</div>

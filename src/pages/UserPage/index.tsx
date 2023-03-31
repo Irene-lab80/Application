@@ -1,40 +1,45 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable max-len */
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { Pagination, Spin } from 'antd';
 import { paths } from 'app/Routes/configRoutes';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, AddIcon, Search, FilterIcon, SearchIcon } from 'shared';
-import { useDeleteProductMutation, useGetProductsQuery, useLazySearchProductQuery } from 'store/query/Posts';
+import { Button, AddIcon, Search, FilterIcon, SearchIcon, SortIcon, FilterMenu } from 'shared';
+import { useDeleteProductMutation, useGetProductsQuery } from 'store/query/Posts';
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilters } from 'store/slice/filtersSlice';
+import { setOrder, setPage, setSearch, setSort } from 'store/slice/filtersSlice/slice';
 import style from './UserPage.module.scss';
 import { Content } from './Content';
 
 export const UserPage = () => {
-  const [search, setSearch] = useState('');
-  const [page, setPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
   const [openCard, setOpenCard] = useState<string | boolean>(false);
-  const [requestID, setRequestID] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const itemsPerPage = 10;
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const [ascending, setAscending] = useState(true);
+
+  const filters = useSelector(getFilters);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { data: products, isLoading, error } = useGetProductsQuery(page);
+  const { data: products, isLoading, isFetching } = useGetProductsQuery(filters);
   const [deleteProduct, { isLoading: dLoading, error: dError, isSuccess: dSuccess }] = useDeleteProductMutation();
-  const [trigger, data] = useLazySearchProductQuery();
 
   const onAddHandler = () => {
     navigate(`/${paths.PRODUCT_CREATE}`);
   };
 
   const onSearch = async (value: string) => {
-    setSearch(value);
+    dispatch(setSearch(value));
   };
 
   const onPageChange = (page: number) => {
-    setPage(page);
+    dispatch(setPage(page));
   };
 
   useEffect(() => {
@@ -42,6 +47,48 @@ export const UserPage = () => {
       setTotalItems(products.totalCount);
     }
   }, [products]);
+
+  const onOrderTitle = () => {
+    setAscending((prev) => !prev);
+    dispatch(setSort('title'));
+  };
+
+  const onOrderDate = () => {
+    setAscending((prev) => !prev);
+    dispatch(setSort('date'));
+  };
+
+  const onOrderTag = () => {
+    setAscending((prev) => !prev);
+    dispatch(setSort('tag'));
+  };
+
+  const onOrderPublish = () => {
+    setAscending((prev) => !prev);
+    dispatch(setSort('publish'));
+  };
+
+  const onFilter = () => {
+    setIsFilterOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (ascending === true) {
+      dispatch(dispatch(setOrder('asc')));
+    } else {
+      dispatch(dispatch(setOrder('desc')));
+    }
+  }, [ascending]);
+
+  useEffect(() => {
+    if (dError) {
+      // @ts-ignore
+      toast.error(dError?.data);
+    }
+    if (dSuccess) {
+      toast.success('Успешно удалено!');
+    }
+  }, [dLoading]);
 
   useEffect(() => {
     const closeDropdown = (e: MouseEvent) => {
@@ -56,22 +103,6 @@ export const UserPage = () => {
 
     return () => document.body.removeEventListener('click', closeDropdown);
   }, []);
-
-  useEffect(() => {
-    if (dError) {
-      // @ts-ignore
-      toast.error(dError?.data);
-    }
-    if (dSuccess) {
-      toast.success('Успешно удалено!');
-    }
-  }, [dLoading]);
-
-  useEffect(() => {
-    if (search !== '') {
-      trigger(search);
-    }
-  }, [search]);
 
   return (
     <div>
@@ -88,35 +119,71 @@ export const UserPage = () => {
         </div>
         <div className={style.bottom}>
           <Search type="light" placeholder="Найти объявление" onSearch={onSearch} enterButton={<SearchIcon />} className={style.search} />
-          <Button type="light">
-            Фильтровать
-            <FilterIcon />
-          </Button>
+          <div className={style.filter_wrapper}>
+            <Button type="light" onClick={onFilter} className={isButtonActive ? style.button_active : ''}>
+              Фильтровать
+              <FilterIcon className="icon" />
+            </Button>
+            <FilterMenu
+              isOpen={isFilterOpen}
+              setIsFilterOpen={setIsFilterOpen}
+              setIsButtonActive={setIsButtonActive}
+            />
+          </div>
           <Pagination
+            className={style.pagination}
+            pageSize={12}
             simple
-            defaultCurrent={2}
-            defaultPageSize={itemsPerPage}
             onChange={onPageChange}
             total={totalItems}
-            current={page}
-            className={style.pagination}
+            current={filters._page}
+            hideOnSinglePage
           />
         </div>
         <div className={style.cards}>
           <div className={style.header}>
-            <div>Название</div>
-            <div>Категория</div>
-            <div>Дата публикации</div>
-            <div>Публикация</div>
+            <button
+              className={style.button_sort}
+              type="button"
+              onClick={onOrderTitle}
+            >
+              Название
+              <SortIcon />
+            </button>
+            <button
+              className={style.button_sort}
+              type="button"
+              onClick={onOrderTag}
+            >
+              Категория
+              <SortIcon />
+            </button>
+            <button
+              className={style.button_sort}
+              type="button"
+              onClick={onOrderDate}
+            >
+              Дата публикации
+              <SortIcon />
+            </button>
+            <button
+              className={style.button_sort}
+              type="button"
+              onClick={onOrderPublish}
+            >
+              Публикация
+              <SortIcon />
+            </button>
           </div>
           {isLoading && <Spin />}
+          {isFetching && <Spin />}
           {products?.response &&
           <Content
             deleteProduct={deleteProduct}
-            isLoading={data.isLoading}
+            isLoading={isLoading}
             openCard={openCard}
             setOpenCard={setOpenCard}
-            content={search === '' ? products?.response : data?.data}
+            content={products?.response}
           />}
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { Spin } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShowTelButton, ViewsNumber } from 'shared';
-import { useGetOneProductQuery } from 'store/query/Posts';
+import { useGetOneProductQuery, useUpdateViewsMutation } from 'store/query/Posts';
 // import moment from 'moment';
 // import ProductSlider from '../../common/ProductSlider';
 import style from './ProductPage.module.scss';
@@ -35,13 +35,24 @@ type ProductPagePropsType = {
 export const ProductPage = () => {
   // const defaultCoordinates = [56.30, 43.98]; // without it YMaps crahes all page
   const { id } = useParams();
-  const { data, isLoading, isError } = useGetOneProductQuery({ id });
+  const { data: product, isLoading, isError } = useGetOneProductQuery({ id });
+  const [updateViews, data] = useUpdateViewsMutation();
+
+  useEffect(() => {
+    if (product && id) {
+      updateViews({ id, payload: product.views + 1 });
+    }
+  }, []);
+
+  useEffect(() => {
+   console.log(data);
+  }, [data.isLoading]);
   return (
     <div className="page-wrapper">
       {isLoading && <Spin />}
       {isError && 'Error'}
       {
-      data
+      product
       &&
       <div className={style.wrapper}>
         <div className={style.arrowBtn}>
@@ -50,16 +61,16 @@ export const ProductPage = () => {
 
         <div className={style.header}>
           <div className={style.left}>
-            <div className={style.date}>{new Date(data?.date).toLocaleString()}</div>
-            <h2 className={style.title}>{data?.title}</h2>
+            <div className={style.date}>{new Date(product?.date).toLocaleString()}</div>
+            <h2 className={style.title}>{product?.title}</h2>
             <div className={style.number}>WS-25645-253-55</div>
-            <ViewsNumber views={data.views} />
+            <ViewsNumber views={product.views} />
           </div>
 
           <div className={style.headerRight}>
-            <div className={style.price}>{`${data?.price?.toLocaleString('ru')} Р`}</div>
+            <div className={style.price}>{`${product?.price?.toLocaleString('ru')} Р`}</div>
             <div className={style.telButton}>
-              <ShowTelButton>{data.tel}</ShowTelButton>
+              <ShowTelButton>{product.tel}</ShowTelButton>
             </div>
           </div>
         </div>
@@ -71,9 +82,9 @@ export const ProductPage = () => {
             </div>
             <div className={style.info}>
               <div className={style.infoTitle}>Описание:</div>
-              <p className={style.description}>{data?.description}</p>
+              <p className={style.description}>{product?.description}</p>
               <div className={style.infoTitle}>Местоположение:</div>
-              <span className={style.location}>{data?.location}</span>
+              <span className={style.location}>{product?.location}</span>
             </div>
             {/* <div className={style.map}>
              <ProductMap coordinates={[

@@ -12,11 +12,10 @@ type TProps = {
   date: string;
   views: number;
   src: string;
-  onClick: () => void;
 };
 
-export const Card = ({ id, tag, title, description, price, date, views, src, onClick }: TProps) => (
-  <Link to={`product/${id}`} onClick={onClick}>
+export const Card = ({ id, tag, title, description, price, date, views, src }: TProps) => (
+  <Link to={`product/${id}`}>
     <div className={style.wrapper}>
       <div className={style.imgWrapper}>
         <img className={style.img} src={src} alt="product" />

@@ -1,22 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { Button, GoBackBtn } from 'shared';
 import { useCreateProductMutation } from 'store/query/Posts';
-import { Form, Input, Select } from 'antd';
+import { Form, Input, Radio, RadioChangeEvent, Select } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import TextArea from 'antd/lib/input/TextArea';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { paths } from 'app/Routes/configRoutes';
 import style from './ProductCreatePage.module.scss';
 
 export const ProductCreatePage = () => {
   const [title, setTitle] = useState('');
+  const [radioValue, setRadioValue] = useState(1);
+
   const [createProduct, data] = useCreateProductMutation();
 
+  const onChange = (e: RadioChangeEvent) => {
+    setRadioValue(e.target.value);
+  };
+
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
   const onFinish = (values: any) => {
     const valuesToSend = { ...values };
     valuesToSend.date = new Date();
+    valuesToSend.views = 0;
     createProduct(valuesToSend);
+    navigate(paths.USER);
   };
 
   const categoryOptions = [
@@ -92,6 +103,13 @@ export const ProductCreatePage = () => {
             <Input />
           </FormItem>
         </Input.Group>
+
+        <FormItem name="publish" label="Публикация">
+          <Radio.Group onChange={onChange} value={radioValue}>
+            <Radio value={1}>Показать</Radio>
+            <Radio value={0}>Скрыть</Radio>
+          </Radio.Group>
+        </FormItem>
       </Form>
     </div>
   );

@@ -1,5 +1,3 @@
-import { UserLayout } from 'shared/ui/Layouts/UserLayout';
-
 export {
   // icons
   AppleIcon,
@@ -22,6 +20,8 @@ export {
   ThreeDotsIcon,
   TrashBinIcon,
   PensilIcon,
+  SortIcon,
+  FilterMenu,
 
   // components
   Header,
@@ -42,7 +42,7 @@ export {
   MainLayout,
   UserLayout,
   AuthLayout,
- } from './ui';
+} from './ui';
 
 export {
   useAuth,

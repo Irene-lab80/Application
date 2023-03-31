@@ -1,23 +1,34 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, GoBackBtn } from 'shared';
-import { useGetOneProductQuery, useUpdateProductMutation } from 'store/query/Posts';
-import { Form, Input, Select, Spin } from 'antd';
+import { TProduct, useGetOneProductQuery, useUpdateProductMutation } from 'store/query/Posts';
+import { Form, Input, Radio, RadioChangeEvent, Select, Spin } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 import TextArea from 'antd/lib/input/TextArea';
+import { toast } from 'react-toastify';
+import { paths } from 'app/Routes/configRoutes';
 import style from './ProductEditPage.module.scss';
 
 export const ProductEditPage = () => {
+  const [radioValue, setRadioValue] = useState(1);
+
   const { id } = useParams();
+  const [form] = Form.useForm();
+  const navigate = useNavigate();
+
   const { data: product, isLoading, isError } = useGetOneProductQuery({ id });
   const [updateProduct, data] = useUpdateProductMutation();
-  const [form] = Form.useForm();
 
-  const onFinish = (values: any) => {
+  const onChange = (e: RadioChangeEvent) => {
+    setRadioValue(e.target.value);
+  };
+
+  const onFinish = (values: TProduct) => {
     const valuesToSend = { ...values };
-    valuesToSend.id = Number(id);
-    // console.log(valuesToSend);
-    updateProduct(valuesToSend);
+    if (id) {
+      updateProduct({ id, payload: valuesToSend });
+    }
+    navigate(paths.USER);
   };
 
   const categoryOptions = [
@@ -37,8 +48,17 @@ export const ProductEditPage = () => {
     tel: product?.tel,
     description: product?.description,
     src: product?.src,
+    publish: product?.publish,
   };
 
+  useEffect(() => {
+    if (data.isSuccess) {
+      toast.success('Успешно!');
+    }
+    if (data.isError) {
+      toast.success('Ошибка!');
+    }
+  }, [data.isLoading]);
   return (
     <div>
       <GoBackBtn>Вернуться назад</GoBackBtn>
@@ -92,9 +112,14 @@ export const ProductEditPage = () => {
               <Input />
             </FormItem>
           </Input.Group>
+
+          <FormItem name="publish" label="Публикация">
+            <Radio.Group onChange={onChange} value={radioValue}>
+              <Radio value={1}>Показать</Radio>
+              <Radio value={0}>Скрыть</Radio>
+            </Radio.Group>
+          </FormItem>
         </Form>
-        {data.isSuccess && 'Успешно'}
-        {data.isError && 'Ошибка'}
       </>}
     </div>
   );

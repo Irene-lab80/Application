@@ -12,6 +12,10 @@
   padding-top: 24px;
 }
 
+.filter_wrapper {
+  position: relative;
+}
+
 .search {
   width: 60%;
 }
@@ -46,6 +50,20 @@
   margin-top: 24px;
 }
 
+.button_sort {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  color: rgba(44, 45, 46, 0.6);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  
+  svg {
+    margin-left: 4x;
+  }
+}
+
 .card_title {
   font-weight: 700;
 }
@@ -57,5 +75,16 @@
 
 .pagination {
   min-width: fit-content;
+}
+
+.button_active {
+  color: var(--color-blue);
+  & > svg path  {
+    stroke: var(--color-blue);
+  }
+
+  &:hover {
+    color: var(--color-blue);
+  }
 }
 

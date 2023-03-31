@@ -46,9 +46,21 @@
   border: 1px solid var(--color-grey);
   @extend .button;
   &:hover, &:focus, &:active {
-    border: 1px solid var(--color-text-button);
     color: var(--color-text-button);
     background: var(--color-grey);
+    border: 1px solid var(--color-grey);
+  }
+}
+
+.inverted {
+  @extend .button;
+  border: 1px solid var(--color-blue);
+  background: var(--color-white);
+  color: var(--color-blue);
+  &:hover, &:focus, &:active {
+    border: 1px solid var(--color-blue);
+    background: var(--color-white);
+    color: var(--color-blue);
   }
 }
 

@@ -11,3 +11,4 @@ export { FormHeader } from './FormHeader';
 export { GoBackBtn } from './GoBackBtn';
 export { Sidebar } from './Sidebar';
 export { Search } from './Search';
+export { FilterMenu } from './FilterMenu';

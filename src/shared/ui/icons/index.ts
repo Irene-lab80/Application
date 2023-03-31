@@ -18,3 +18,4 @@ export { FilterIcon } from './FilterIcon';
 export { ThreeDotsIcon } from './ThreeDotsIcon';
 export { PensilIcon } from './PensilIcon';
 export { TrashBinIcon } from './TrashBinIcon';
+export { SortIcon } from './SortIcon';

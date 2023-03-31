@@ -19,6 +19,7 @@ export {
   ThreeDotsIcon,
   TrashBinIcon,
   PensilIcon,
+  SortIcon,
 } from './icons';
 
 export {
@@ -35,6 +36,7 @@ export {
   GoBackBtn,
   Sidebar,
   Search,
+  FilterMenu,
 } from './components';
 
 export {

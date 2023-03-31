@@ -5,4 +5,5 @@ export const buttonType = {
   arrow: style.arrow,
   colored: style.colored,
   light: style.light,
+  inverted: style.inverted,
 };
