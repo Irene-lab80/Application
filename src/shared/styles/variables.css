@@ -7,7 +7,7 @@
   --color-background-footer: #F2F2F2;
   --color-white: #FFFFFF;
   --color-blue: #4877F2;
-  --color-button-colored: #FFAC28;
+  --color-orange: #FFAC28;
   --color-text-light: #F2F2F2;
 
   --color-border: rgba(42, 47, 55, 0.1);
@@ -16,7 +16,7 @@
   --color-grey-l: rgba(42, 47, 55, 0.4);
   --color-grey-m: rgba(44, 45, 46, 0.08);
   --color-grey-s: rgba(42, 47, 55, 0.02);
-  ;
+  --color-grey-xs: rgba(29, 29, 29, 0.4);
   --color-error: rgb(213, 43, 43);
 
   /* Fonts */

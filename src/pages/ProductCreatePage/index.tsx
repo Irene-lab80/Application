@@ -7,6 +7,7 @@ import TextArea from 'antd/lib/input/TextArea';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { paths } from 'app/Routes/configRoutes';
+import { MaskedInput } from 'antd-mask-input';
 import style from './ProductCreatePage.module.scss';
 
 export const ProductCreatePage = () => {
@@ -88,7 +89,9 @@ export const ProductCreatePage = () => {
 
         <Input.Group compact className={style.form_group}>
           <FormItem name="tel" label="Телефон">
-            <Input />
+            <MaskedInput
+              mask="+7(00)0000-0000"
+            />
           </FormItem>
         </Input.Group>
 

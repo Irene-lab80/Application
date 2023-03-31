@@ -20,6 +20,7 @@ export {
   TrashBinIcon,
   PensilIcon,
   SortIcon,
+  RefreshIcon,
 } from './icons';
 
 export {

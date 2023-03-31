@@ -1,5 +1,11 @@
 @import '../../../shared/styles/mixins.scss';
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
 
 .feedwrapper {
   display: flex;
@@ -80,7 +86,16 @@
 
 .menuItemActive {
   @extend .menuItem;
-  background-color:  var(--color-button-colored);
+  background-color:  var(--color-orange);
   color: var(--color-text);
   pointer-events: none;
+}
+
+.button {
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
 }

@@ -31,11 +31,11 @@ export const Card = ({ id, tag, title, description, price, date, views, src }: T
             { `${(price)?.toLocaleString('ru')} Р `}
           </div>
           <div className={style.footer}>
-            <div className={style.date}>{new Date(date).toLocaleString('ru-RU')}</div>
+            <div className={style.date}>{new Date(date).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
             <ViewsNumber views={views} />
           </div>
         </div>
       </div>
     </div>
   </Link>
-  );
+);

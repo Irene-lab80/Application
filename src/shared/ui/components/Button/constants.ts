@@ -6,4 +6,10 @@ export const buttonType = {
   colored: style.colored,
   light: style.light,
   inverted: style.inverted,
+  text: style.text,
+};
+
+export const buttonForm = {
+  round: style.round,
+  normal: style.normal,
 };

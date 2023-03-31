@@ -3,6 +3,7 @@ import FormItem from 'antd/es/form/FormItem';
 import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { optionsTags } from 'shared/utils';
 import { setPublish, setTags } from 'store/slice/filtersSlice/slice';
 import { Button } from '../Button';
 import style from './FilterMenu.module.scss';
@@ -17,7 +18,6 @@ export const FilterMenu = ({ isOpen, setIsFilterOpen, setIsButtonActive }: TProp
   const [checkedPublish, setCheckedPublish] = useState<null | CheckboxValueType[]>(null);
   const [checkedTags, setCheckedTags] = useState<null | CheckboxValueType[]>(null);
 
-  const optionsTags = ['Автомобили', 'Аксессуары', 'Одежда', 'Мебель', 'Спорт', 'Техника', 'Товары для дома'];
   const optionsPublish = [{ label: 'Да', value: 1 }, { label: 'Нет', value: 0 }];
 
   const dispatch = useDispatch();

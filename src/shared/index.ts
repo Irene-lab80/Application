@@ -22,6 +22,7 @@ export {
   PensilIcon,
   SortIcon,
   FilterMenu,
+  RefreshIcon,
 
   // components
   Header,

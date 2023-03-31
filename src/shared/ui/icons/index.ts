@@ -19,3 +19,4 @@ export { ThreeDotsIcon } from './ThreeDotsIcon';
 export { PensilIcon } from './PensilIcon';
 export { TrashBinIcon } from './TrashBinIcon';
 export { SortIcon } from './SortIcon';
+export { RefreshIcon } from './RefreshIcon';
