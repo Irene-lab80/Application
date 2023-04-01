@@ -50,7 +50,7 @@ export const ProductEditPage = () => {
     description: product?.description,
     src: product?.src,
     publish: product?.publish,
-    Location: product?.location,
+    location: product?.location,
   };
 
   useEffect(() => {
