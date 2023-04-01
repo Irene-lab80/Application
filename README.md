@@ -1,6 +1,6 @@
 Deploy: [https://application-r88w.vercel.app/](https://application-r88w.vercel.app/)
 
-Please note that it might take a while for the backend to wake up due to glitch projects hosting rules.
+❗ Please note that it might take a while for the backend to wake up due to glitch projects hosting rules.
 
 # Sticker
 An app created with React/Redux/TypeScript
