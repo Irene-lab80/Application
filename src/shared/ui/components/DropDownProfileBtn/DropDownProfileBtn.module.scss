@@ -17,13 +17,15 @@
   font-weight: 700;
   font-size: 12px;
   line-height: 24px;
-  margin-right: 16px;
+  margin-right: 14px;
   color: var(--color-text);
-  opacity: 0.5;
 }
 
 .menu_item {
   display: flex;
   align-items: center;
   padding: 14px;
+  > svg {
+    margin-right: 14px;
+  }
 }

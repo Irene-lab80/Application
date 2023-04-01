@@ -47,19 +47,19 @@ const DropDownProfileBtn = () => {
       key: '2',
       label: (
         <Link to={paths.USER} className={style.menu_item}>
+          <BookIcon />
           Мои объявления
         </Link>
       ),
-      icon: <BookIcon />,
     },
     {
       key: '3',
       label: (
         <button type="button" className={style.menu_item} onClick={exitHandler}>
+          <ExitIcon />
           Выйти
         </button>
       ),
-      icon: <ExitIcon />,
     },
   ];
 
