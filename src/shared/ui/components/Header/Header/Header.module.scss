@@ -1,3 +1,129 @@
+@import '../../../../styles/mixins.scss';
+
 .wrapper {
-  padding: 0;
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  background: var(--color-white);
+  z-index: 100;
+  padding: 0 20px;
+  border: 1px solid var(--color-grey);
+  box-shadow: 0px 8px 36px rgba(42, 47, 55, 0.05);
+}
+
+.wrapper_hide {
+  @extend .wrapper;
+  top: -80px;
+  transition: top 0.4s ease-out;
+}
+
+.wrapper_show {
+  @extend .wrapper;
+  top: 0;
+  transition: top 0.4s ease-out;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;  
+  height: 100%;
+  width: 100%;
+}
+
+.navigation {
+  display: flex;
+}
+
+.nav_item {
+  display: flex;
+  align-items: center;
+  padding-right: 18px;
+  text-transform: uppercase;
+  > svg {
+    width: 20px;
+    height: 20px;
+    padding-right: 6px;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+.search_wrapper {
+  position: relative;
+  @include media-breakpoint-down(sm){
+    display: flex;
+    align-items: center;
+  }
+}
+
+.search_desktop {
+  width: 469px;
+  @include media-breakpoint-down(xl){
+    width: 100%;
+  }
+  @include media-breakpoint-down(sm){
+    display: none;
+  }
+}
+
+.mobile_search {
+  display: none;
+  @include media-breakpoint-down(sm){
+    display: inline-flex;
+    position: absolute;
+  }
+}
+
+.searchMobileIcon {
+  display: none;
+  position: relative;
+
+  @include media-breakpoint-down(sm) {
+    display: inline-flex;
+  }
+}
+
+.searchMobile {
+  position: absolute;
+  top: 40px;
+  display: flex;
+  width: 50%;
+  @include media-breakpoint-down(sm){
+    order: 0;
+  }
+}
+
+
+.searchMobile > span > span {
+  min-width: 270px;
+}
+
+.burger_menu {
+  display: none;
+  margin-left: 24px;
+  @include media-breakpoint-down(md){
+    display: inline-flex;
+  }
+}
+
+.burger_wrapper {
+  @include media-breakpoint-down(sm){
+    order: 2;
+  }
+}
+
+.button {
+  @include media-breakpoint-down(md){
+    display: none;
+  }
+}
+
+.logo {
+  @include media-breakpoint-down(sm){
+    order: 1;
+  }
 }

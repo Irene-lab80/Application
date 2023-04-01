@@ -1,0 +1,12 @@
+.views {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  & svg path {
+    stroke:  var(--color-grey-xs);
+  }
+  span {
+    margin-left: 8px;
+  }
+  color: var(--color-grey-xs);
+}

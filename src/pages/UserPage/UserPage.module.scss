@@ -1,0 +1,90 @@
+.top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(42, 47, 55, 0.1);
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.filter_wrapper {
+  position: relative;
+}
+
+.search {
+  width: 60%;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 31% 22% 24% 15% 1fr;
+  padding: 28px 24px;
+  border-radius: 4px;
+  box-shadow: 0px 8px 36px rgba(42, 47, 55, 0.05);
+  background: var(--color-white);
+  border: 1px solid var(--color-grey);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.header {
+  @extend .card;
+  color: rgba(44, 45, 46, 0.6);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 12px 24px;
+  margin-top: 24px;
+}
+
+.button_sort {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  color: rgba(44, 45, 46, 0.6);
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  
+  svg {
+    margin-left: 4x;
+  }
+}
+
+.card_title {
+  font-weight: 700;
+}
+
+.menu_button {
+  width: 24px;
+  height: 24px;
+}
+
+.pagination {
+  min-width: fit-content;
+}
+
+.button_active {
+  color: var(--color-blue);
+  & > svg path  {
+    stroke: var(--color-blue);
+  }
+
+  &:hover {
+    color: var(--color-blue);
+  }
+}
+

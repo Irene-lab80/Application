@@ -1,2 +1,15 @@
 export { Footer } from './Footer';
 export { Header } from './Header';
+export { Logo } from './Logo';
+export { Button } from './Button';
+export { Card } from './Card';
+export { ViewsNumber } from './ViewsNumber';
+export { ShowTelButton } from './ShowTelButton';
+export { FormAuth } from './FormAuth';
+export { FormReg } from './FormReg';
+export { FormHeader } from './FormHeader';
+export { GoBackBtn } from './GoBackBtn';
+export { Sidebar } from './Sidebar';
+export { Search } from './Search';
+export { FilterMenu } from './FilterMenu';
+export { CardSmall } from './CardSmall';

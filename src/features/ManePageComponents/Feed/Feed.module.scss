@@ -1,0 +1,99 @@
+@import '../../../shared/styles/mixins.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
+.feedwrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  gap: 40px;
+  max-width: 1200px;
+  padding-top: 40px;
+
+  @include media-breakpoint-down(maxXl){
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-breakpoint-down(m-sm){
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.btnWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 40px auto 0;  
+  max-width: 242px;
+}
+
+.btnText {
+  margin-left: 12px;
+}
+
+.titleWrapper {
+  padding: 0 15px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  @include media-breakpoint-down(md) {
+    padding: 0 15px;
+  } 
+  @include media-breakpoint-down(sm) {
+    padding: 0 24px;
+  } 
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  width: 100%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.menuItem {
+  flex: 0 0 auto;
+  border-radius: 35px;
+  margin-right: 24px;
+  color: var(--color-text);
+  transition: .3s;
+  padding: 8px 24px;
+  border: 1px solid transparent;
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid var(--color-blue);
+    color: var(--color-blue)
+  }
+}
+
+.menuItemActive {
+  @extend .menuItem;
+  background-color:  var(--color-orange);
+  color: var(--color-text);
+  pointer-events: none;
+}
+
+.button_loadmore {
+  font-weight: 700;
+}

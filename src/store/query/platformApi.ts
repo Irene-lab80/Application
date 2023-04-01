@@ -5,4 +5,5 @@ export const platformApi = createApi({
   reducerPath: 'api',
   baseQuery: refreshTokenQuery,
   endpoints: () => ({}),
+  tagTypes: ['Posts'],
 });

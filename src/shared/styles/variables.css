@@ -1,11 +1,25 @@
 :root {
   /* Colors */
-  --black: #161616;
-  --white: #ffffff;
+  --color-text: #424242;
+  --color-text-footer: rgba(66, 66, 66, 0.6);
+  --color-text-button: rgba(66, 66, 66);
+  --color-background: rgba(39, 79, 143, 0.02);
+  --color-background-footer: #F2F2F2;
+  --color-white: #FFFFFF;
+  --color-blue: #4877F2;
+  --color-orange: #FFAC28;
+  --color-text-light: #F2F2F2;
+
+  --color-border: rgba(42, 47, 55, 0.1);
+  --color-grey: rgba(42, 47, 55, 0.08);
+  --color-grey-xl: rgba(42, 47, 55, 0.6);
+  --color-grey-l: rgba(42, 47, 55, 0.4);
+  --color-grey-m: rgba(44, 45, 46, 0.08);
+  --color-grey-s: rgba(42, 47, 55, 0.02);
+  --color-grey-xs: rgba(29, 29, 29, 0.4);
+  --color-error: rgb(213, 43, 43);
 
   /* Fonts */
-  --font-h1: 700 200px/100% Manrope, sans-serif;
-
-  /* delay */
-  --hover-delay: 0.3s;
+  --font-default: 'Jost', sans-serif;
+  --font-accent: 'Montserrat', sans-serif;
 }

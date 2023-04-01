@@ -1,1 +1,2 @@
-export { Section } from './Section';
+export { Banner } from './Banner';
+export { Feed } from './Feed';

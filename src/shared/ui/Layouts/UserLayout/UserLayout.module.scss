@@ -1,0 +1,30 @@
+@import '../../../../shared/styles/mixins.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  background: var(--color-background);
+}
+
+.container {
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 80px auto;
+  width: 100%;
+  
+  @include media-breakpoint-down(xxl2){
+    padding: 0 20px;
+  }
+}
+
+.grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 20% calc(80% - 40px);
+  gap: 40px;
+  padding-top: 40px;
+  @include media-breakpoint-down(md){
+    grid-template-columns: 100%;
+  }
+}

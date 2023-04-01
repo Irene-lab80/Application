@@ -1,0 +1,167 @@
+@import '../../shared/styles/mixins.scss';
+
+.wrapper {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.arrowBtn {
+  align-self: flex-start;
+  margin-bottom: 32px;
+
+  &:hover{
+    opacity: 0.8;
+  }
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column; 
+    width: 100%;
+  } 
+}
+
+.left {
+  width: calc(766 / 1170 * 100%);
+  @include media-breakpoint-down(md) {
+    width: 100%;    
+  } 
+}
+
+.headerRight {
+  width: calc(330 / 1170 * 100%);
+  @include media-breakpoint-down(md) {
+    width: 100%;
+    margin-top: 24px;
+  }
+}
+
+.aside {
+  width: calc(330 / 1170 * 100%);
+  @include media-breakpoint-down(md) {
+    width: 100%;    
+  } 
+}
+
+.more {
+  margin-bottom: 24px;
+}
+
+.smallCards {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 300px;
+}
+
+.image {
+  margin-top: 24px;
+  max-width: 500px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.number, 
+.views, 
+.title,
+.button {
+  margin-top: 24px;
+}
+
+.number {
+  margin-bottom: 24px;
+}
+
+
+.date {
+  display: inline-flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 20px;
+  background: rgba(42, 47, 55, 0.06);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.number {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.views {
+  font-size: 16px;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  margin-bottom: 24px;
+}
+
+.more {
+  margin-top: 72px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.telButton {
+  display: flex;
+  @include media-breakpoint-down(md) {
+    display: inline;
+  } 
+}
+
+.telButton a {
+  @include  media-breakpoint-down(md) {
+    margin-top: 10px;
+    margin-left: 0;
+    white-space: nowrap;
+  } 
+}
+
+.info {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.infoTitle {
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 32px;
+}
+
+.description {
+  margin-top: 24px;
+}
+
+.location {
+  margin-left: 16px;
+}
+
+.map {
+  width: 100%;
+  height: 325px;
+  margin-top: 24px;
+}

@@ -1,0 +1,61 @@
+@import '../../../../styles/mixins.scss';
+
+.mobileMenu {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  z-index: 1000; 
+  width: 100vw;
+  height: 100vh;
+  padding-top: 32px;
+  padding-left: 32px;
+  animation: menuSlideIn 0.2s ease-in;
+  background: #FFFFFF;
+}
+
+@keyframes menuSlideIn {
+  0% {
+    left: -100vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.mobileButton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: fit-content;
+}
+
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;  
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;  
+  background-color: #E5E5E5;
+  border-radius: 100%;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 24px;
+  margin-right: 14px;
+  color: var(--color-text);
+}
+
+.menu_item {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  > svg {
+    margin-right: 14px;
+  }
+}

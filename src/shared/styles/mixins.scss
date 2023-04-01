@@ -7,6 +7,10 @@
     @media (max-width: 1399.78px) {
       @content;
     }
+  } @else if $size == xxl2 {
+    @media (max-width: 1239.78px) {
+      @content;
+    }
   } @else if $size == maxXl {
     @media (max-width: 1123.98px) {
       @content;
@@ -39,5 +43,14 @@
     @media (max-width: 320px) {
       @content;
     }
+  }
+}
+
+@mixin columns ($width) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  >* {
+    flex-basis: $width;
   }
 }
