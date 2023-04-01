@@ -78,6 +78,7 @@ export const ProductPage = () => {
             <div className={style.smallCards}>
               {products && products.response.filter((el) => Number(el.id) !== Number(id)).slice(0, 2).map((product: TProduct) =>
               (<CardSmall
+                key={product.id}
                 id={product.id}
                 src={product.src}
                 title={product.title}

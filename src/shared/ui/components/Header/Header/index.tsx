@@ -14,7 +14,6 @@ import { ProfileButton } from '../../ProfileButton';
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   const navigate = useNavigate();
   const scrollDirection = useScrollDirection();
@@ -26,17 +25,7 @@ export const Header = () => {
     document.body.style.overflow = '';
   };
 
-  const showSearch = () => {
-    setSearchOpen(true);
-    hideMenu();
-  };
-
-  const hideSearch = () => {
-    setSearchOpen(false);
-  };
-
   const showMenu = () => {
-    hideSearch();
     setMenuOpen(true);
     document.body.style.overflow = 'hidden';
   };
@@ -44,7 +33,6 @@ export const Header = () => {
   const searchHandler = (value: string) => {
     dispatch(setSearch(value));
     navigate(paths.SEARCH);
-    hideSearch();
   };
 
   const onPostNewAd = () => {
@@ -66,15 +54,6 @@ export const Header = () => {
           <div className={style.search_desktop}>
             <Search onSearch={searchHandler} enterButton="Искать" prefix={<SearchIcon />} />
           </div>
-          <div className={style.searchMobileIcon}>
-            <SearchButton
-              showSearch={showSearch}
-              hideSearch={hideSearch}
-              isOpen={searchOpen}
-            />
-            {searchOpen &&
-            <Search onSearch={searchHandler} className={style.searchMobile} />}
-          </div>
         </div>
         <div className={style.button}>
           <Button type="colored" onClick={onPostNewAd}>Подать объявление</Button>
@@ -87,7 +66,7 @@ export const Header = () => {
 
           <div className={style.burger_menu}>
             <BurgerButton isOpen={menuOpen} showMenu={showMenu} hideMenu={hideMenu} />
-            {menuOpen && <MobileMenu />}
+            {menuOpen && <MobileMenu setMenuOpen={setMenuOpen} />}
           </div>
         </div>
       </nav>

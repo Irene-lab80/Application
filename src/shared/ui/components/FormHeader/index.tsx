@@ -9,18 +9,20 @@ type TProps = {
 
 export const FormHeader = ({ children }: TProps) => (
   <div className={style.wrapper}>
-    <NavLink
-      className={({ isActive }) => (isActive ? style.button_active : style.button)}
-      to={paths.AUTH}
-    >
-      Авторизация
-    </NavLink>
-    <NavLink
-      className={({ isActive }) => (isActive ? style.button_active : style.button)}
-      to={paths.REG}
-    >
-      Регистрация
-    </NavLink>
+    <div className={style.buttons_wrapper}>
+      <NavLink
+        className={({ isActive }) => (isActive ? style.button_active : style.button)}
+        to={paths.AUTH}
+      >
+        Авторизация
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => (isActive ? style.button_active : style.button)}
+        to={paths.REG}
+      >
+        Регистрация
+      </NavLink>
+    </div>
     <div className={style.form}>
       {children}
     </div>

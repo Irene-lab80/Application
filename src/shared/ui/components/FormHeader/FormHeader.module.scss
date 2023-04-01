@@ -1,4 +1,4 @@
-// @import '../../../assets/styles/constants';
+@import '../../../styles/mixins.scss';
 
 .wrapper {
   width: 364px;
@@ -8,6 +8,12 @@
   padding: 24px;
 }
 
+.buttons_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -15,15 +21,16 @@
   width: 182px;
   height: 32px;
   border-bottom: 1px solid rgba(42, 47, 55, 0.12);
-  // color: $color-text-dark-m;
+  @include media-breakpoint-down(sm) {
+    width: 150px;
+  }
+  @include media-breakpoint-down(xs) {
+    width: 130px;
+  }
 }
 
 .button_active {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 182px;
-  height: 32px;
+  @extend .button;
   border-bottom: 2px solid var(--color-blue);
   font-weight: 700;
 }

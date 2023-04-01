@@ -16,7 +16,7 @@ export const Content = ({ content, isLoading, openCard, setOpenCard, deleteProdu
   <div>
     {isLoading && <Spin />}
     {content && content.length !== 0 ? content.map((product: any) => (
-      <div className={style.card}>
+      <div className={style.card} key={product.id}>
         <div className={style.card_title}>{product.title}</div>
         <div>{product.tag}</div>
         <div>{new Date(product.date).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}</div>

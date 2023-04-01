@@ -108,7 +108,6 @@ export const UserPage = () => {
   useEffect(() => {
     if (userId && userId !== '') {
       dispatch(setUserId(userId));
-    console.log('set user');
     }
     return () => {
     dispatch(resetFilters());
