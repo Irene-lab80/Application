@@ -6,6 +6,7 @@ Please note that it might take a while for the backend to wake up due to glitch 
 
 # Sticker
 An app created with React/Redux/TypeScript
+![1](https://user-images.githubusercontent.com/70843828/229290007-96fea495-56b1-4512-9a99-7febec01451c.gif)
 
 ## Table of contents
 * [General info](#general-info)
