@@ -37,10 +37,10 @@ const DropDownProfileBtn = () => {
     {
       key: '1',
       label: (
-        <div className={style.menu_item}>
+        <Link to={paths.USER} className={style.menu_item}>
           <span className={style.avatar}>{isAuth ? avatarName : 'Г'}</span>
           <span>{isAuth ? userName : 'Гость'}</span>
-        </div>
+        </Link>
       ),
     },
     {
