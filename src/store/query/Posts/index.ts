@@ -14,11 +14,12 @@ export type TProduct = {
   title: string;
   username: string;
   views: number;
+  userId: string | number;
 }
 
 export const extendedApi = platformApi.injectEndpoints({
   endpoints: (build) => ({
-    getProducts: build.query<any, any>({
+    getProducts: build.query<{response: TProduct[], totalCount: number}, any>({
       query: (args) => {
         const p = {
           _page: args._page,
@@ -27,6 +28,7 @@ export const extendedApi = platformApi.injectEndpoints({
           _order: args._order,
           q: args.q,
         };
+
         const params = new URLSearchParams(p);
 
         if (args.publish) {
@@ -40,20 +42,15 @@ export const extendedApi = platformApi.injectEndpoints({
             params.append('tag', el);
           });
         }
+
+        if (args.userId) {
+          params.append('userId', args.userId);
+        }
+
         return {
         url: `/products?${params}`,
       };
 },
-      transformResponse: (response: any, meta: any) => (
-        { response, totalCount: Number(meta?.response?.headers.get('X-Total-Count')) }
-        ),
-        providesTags: ['Posts'],
-    }),
-    getFilteredProducts: build.query<any, any>({
-      query: ({ _page, _limit, _sort, _order, q, publish }) => ({
-        url: '/products',
-        params: { _page, _limit, _sort, _order, q, publish },
-      }),
       transformResponse: (response: any, meta: any) => (
         { response, totalCount: Number(meta?.response?.headers.get('X-Total-Count')) }
         ),
@@ -77,11 +74,12 @@ export const extendedApi = platformApi.injectEndpoints({
       }),
       invalidatesTags: ['Posts'],
     }),
-    updateViews: build.mutation<any, {id: string, payload: any}>({
+    updateViews: build.mutation<TProduct, {id: string, payload: {views: number}}>({
       query: ({ id, payload }) => ({
         url: `/products/${id}`,
         method: 'PATCH',
         body: payload,
+        headers: { 'Content-Type': 'application/json' },
       }),
     }),
     createProduct: build.mutation<TProduct, TProduct>({
@@ -111,5 +109,4 @@ export const {
   useUpdateViewsMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,
-  useLazyGetFilteredProductsQuery,
 } = extendedApi;

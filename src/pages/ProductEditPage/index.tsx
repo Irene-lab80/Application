@@ -7,6 +7,7 @@ import FormItem from 'antd/es/form/FormItem';
 import TextArea from 'antd/lib/input/TextArea';
 import { toast } from 'react-toastify';
 import { paths } from 'app/Routes/configRoutes';
+import { MaskedInput } from 'antd-mask-input';
 import style from './ProductEditPage.module.scss';
 
 export const ProductEditPage = () => {
@@ -49,6 +50,7 @@ export const ProductEditPage = () => {
     description: product?.description,
     src: product?.src,
     publish: product?.publish,
+    Location: product?.location,
   };
 
   useEffect(() => {
@@ -97,7 +99,9 @@ export const ProductEditPage = () => {
 
           <Input.Group compact className={style.form_group}>
             <FormItem name="tel" label="Телефон">
-              <Input />
+              <MaskedInput
+                mask="+7 (000) - 000 - 00 - 00"
+              />
             </FormItem>
           </Input.Group>
 
@@ -109,6 +113,12 @@ export const ProductEditPage = () => {
 
           <Input.Group compact className={style.form_group}>
             <FormItem name="src" label="Фотография">
+              <Input />
+            </FormItem>
+          </Input.Group>
+
+          <Input.Group compact className={style.form_group}>
+            <FormItem name="location" label="Адрес">
               <Input />
             </FormItem>
           </Input.Group>

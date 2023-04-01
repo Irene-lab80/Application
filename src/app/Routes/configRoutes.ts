@@ -17,6 +17,7 @@ export enum paths {
   MY_ADS = '/my-ads',
   NOTFOUND = '*',
   USER = '/user',
+  SEARCH = '/search'
 }
 
 export type TRoute = {
@@ -64,6 +65,12 @@ export const configRoutes: TRoute[] = [
         isPrivate: false,
         element: Pages.NotFoundPage,
         path: paths.NOTFOUND,
+      },
+      {
+        id: '1.6',
+        isPrivate: false,
+        element: Pages.SearchResults,
+        path: paths.SEARCH,
       },
     ],
   },

@@ -1,54 +1,40 @@
+/* eslint-disable max-len */
 import { Spin } from 'antd';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { ShowTelButton, ViewsNumber } from 'shared';
-import { useGetOneProductQuery, useUpdateViewsMutation } from 'store/query/Posts';
-// import moment from 'moment';
-// import ProductSlider from '../../common/ProductSlider';
+import { GoBackBtn, ShowTelButton, ViewsNumber } from 'shared';
+import { CardSmall } from 'shared/ui';
+import { TProduct, useGetOneProductQuery, useGetProductsQuery, useUpdateViewsMutation } from 'store/query/Posts';
+import { getFilters } from 'store/slice/filtersSlice';
+import { setTags } from 'store/slice/filtersSlice/slice';
 import style from './ProductPage.module.scss';
-// import ViewsNumber from '../../common/ViewsNumber';
-// import ShowTelButton from '../../common/ShowTelButton';
-// import ProductMap from '../../common/ProductMap';
-// import CardsSmall from '../../common/CardsSmall';
-// import 'moment/locale/ru'; // without this line it didn't work
-// import GoBackBtn from '../../common/GoBackBtn';
-
-// moment.locale('ru');
-
-type ProductPagePropsType = {
-  // productInfo: {
-  //   id: number | undefined;
-  //   tag: string | undefined;
-  //   title: string | undefined;
-  //   description: string | undefined;
-  //   price: number | undefined;
-  //   date: string | undefined;
-  //   views: number | undefined;
-  //   src: string | undefined;
-  //   tel: string | undefined;
-  //   location: string | undefined;
-  //   coordinates: number[] | undefined
-  // } | undefined;
-}
-// so that YMaps won't crash on undefined
 
 export const ProductPage = () => {
-  // const defaultCoordinates = [56.30, 43.98]; // without it YMaps crahes all page
+  const filters = useSelector(getFilters);
+  const dispatch = useDispatch();
+
   const { id } = useParams();
+
   const { data: product, isLoading, isError } = useGetOneProductQuery({ id });
-  const [updateViews, data] = useUpdateViewsMutation();
+  const { data: products } = useGetProductsQuery(filters);
+
+  const [updateViews] = useUpdateViewsMutation();
 
   useEffect(() => {
-    if (product && id) {
-      updateViews({ id, payload: product.views + 1 });
+    if (product?.tag) {
+      dispatch(setTags([product.tag]));
     }
   }, []);
 
   useEffect(() => {
-   console.log(data);
-  }, [data.isLoading]);
+    if (product && id) {
+      updateViews({ id, payload: { views: product.views + 1 } });
+    }
+  }, [product, id]);
+
   return (
-    <div className="page-wrapper">
+    <div className={style.wrapper}>
       {isLoading && <Spin />}
       {isError && 'Error'}
       {
@@ -56,12 +42,11 @@ export const ProductPage = () => {
       &&
       <div className={style.wrapper}>
         <div className={style.arrowBtn}>
-          {/* <GoBackBtn> </GoBackBtn> */}
+          <GoBackBtn>Назад</GoBackBtn>
         </div>
-
         <div className={style.header}>
           <div className={style.left}>
-            <div className={style.date}>{new Date(product?.date).toLocaleString()}</div>
+            <div className={style.date}>{new Date(product?.date).toLocaleString(('ru-RU'), { day: 'numeric', month: 'long', year: 'numeric' })}</div>
             <h2 className={style.title}>{product?.title}</h2>
             <div className={style.number}>WS-25645-253-55</div>
             <ViewsNumber views={product.views} />
@@ -77,8 +62,8 @@ export const ProductPage = () => {
 
         <main className={style.main}>
           <div className={style.left}>
-            <div className={style.slider}>
-              {/* <ProductSlider src={productInfo?.src} /> */}
+            <div className={style.image}>
+              <img src={product.src} alt={product.title} />
             </div>
             <div className={style.info}>
               <div className={style.infoTitle}>Описание:</div>
@@ -86,18 +71,17 @@ export const ProductPage = () => {
               <div className={style.infoTitle}>Местоположение:</div>
               <span className={style.location}>{product?.location}</span>
             </div>
-            {/* <div className={style.map}>
-             <ProductMap coordinates={[
-              productInfo?.coordinates,
-            ] && [defaultCoordinates]}
-             />
-           </div> */}
           </div>
 
           <aside className={style.aside}>
             <div className={style.more}>Смотрите также:</div>
             <div className={style.smallCards}>
-              {/* <CardsSmall bigTag={productInfo?.tag} id={productInfo?.id} /> */}
+              {products && products.response.filter((el) => Number(el.id) !== Number(id)).slice(0, 2).map((product: TProduct) =>
+              (<CardSmall
+                id={product.id}
+                src={product.src}
+                title={product.title}
+              />))}
             </div>
           </aside>
         </main>

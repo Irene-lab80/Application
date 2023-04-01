@@ -11,12 +11,16 @@ import { ProfileButton } from '../ProfileButton';
 
 const DropDownProfileBtn = () => {
   const [avatarName, setAvatarName] = useState('');
+
   const [userName, setUserName] = useLocalStorage('userName', '');
+  const [, setUserId] = useLocalStorage('userId');
+
   const isAuth = useAuth();
   const navigate = useNavigate();
 
   const exitHandler = async () => {
     await setUserName('');
+    await setUserId('');
     cookies.remove('token');
     toast.success('Выход выполнен успешно!');
     navigate(paths.MAIN);

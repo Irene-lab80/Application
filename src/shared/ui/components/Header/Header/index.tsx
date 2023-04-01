@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useScrollDirection, Logo, Button, useAuth, Search, SearchIcon } from 'shared';
+import { paths } from 'app/Routes/configRoutes';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { setSearch } from 'store/slice/filtersSlice/slice';
 import { MobileMenu } from '../MobileMenu';
 import style from './Header.module.scss';
 import { BurgerButton } from '../BurgerButton';
@@ -15,6 +19,7 @@ export const Header = () => {
   const navigate = useNavigate();
   const scrollDirection = useScrollDirection();
   const isAuth = useAuth();
+  const dispatch = useDispatch();
 
   const hideMenu = () => {
     setMenuOpen(false);
@@ -36,10 +41,19 @@ export const Header = () => {
     document.body.style.overflow = 'hidden';
   };
 
-  const searchHandler = () => {
-    // dispatch(SetSearchTermAction(searchTerm));
-    navigate('/search');
+  const searchHandler = (value: string) => {
+    dispatch(setSearch(value));
+    navigate(paths.SEARCH);
     hideSearch();
+  };
+
+  const onPostNewAd = () => {
+    if (isAuth) {
+      navigate(paths.PRODUCT_CREATE);
+    } else {
+      navigate(paths.AUTH);
+      toast('Для того чтобы подать заявление нужно авторизоваться!');
+    }
   };
 
   return (
@@ -50,7 +64,7 @@ export const Header = () => {
         </div>
         <div className={style.search_wrapper}>
           <div className={style.search_desktop}>
-            <Search onSearch={() => searchHandler} enterButton="Искать" prefix={<SearchIcon />} />
+            <Search onSearch={searchHandler} enterButton="Искать" prefix={<SearchIcon />} />
           </div>
           <div className={style.searchMobileIcon}>
             <SearchButton
@@ -59,11 +73,11 @@ export const Header = () => {
               isOpen={searchOpen}
             />
             {searchOpen &&
-            <Search onSearch={() => searchHandler} className={style.searchMobile} />}
+            <Search onSearch={searchHandler} className={style.searchMobile} />}
           </div>
         </div>
         <div className={style.button}>
-          <Button type="colored">Подать объявление</Button>
+          <Button type="colored" onClick={onPostNewAd}>Подать объявление</Button>
         </div>
         <div className={style.burger_wrapper}>
           {!isAuth ?

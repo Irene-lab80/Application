@@ -44,6 +44,9 @@ const filtersSlice = createSlice({
     setPublish(state, action: PayloadAction<any>) {
       return { ...state, publish: action.payload };
     },
+    setUserId(state, action: PayloadAction<any>) {
+      return { ...state, userId: action.payload };
+    },
   },
 });
 
@@ -55,5 +58,7 @@ export const {
   setPage,
   setTags,
   setPublish,
+  setLimit,
+  setUserId,
 } = filtersSlice.actions;
 export const filtersReducer = filtersSlice.reducer;

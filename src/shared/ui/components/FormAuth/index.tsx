@@ -13,9 +13,11 @@ import style from './FormAuth.module.scss';
 import { Button } from '../Button';
 
 export const FormAuth = () => {
-  // const [isButtonLoading, setIsButtonLoading] =
   const [userName, setUserName] = useLocalStorage('userName', '');
+  const [, setUserId] = useLocalStorage('userId', '');
+
   const [loginUser, { data, isLoading, error }] = useLoginUserMutation();
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -47,6 +49,7 @@ export const FormAuth = () => {
         secondName: data.user.secondName,
       }));
       setUserName(`${data.user.name} ${data.user.secondName}`);
+      setUserId(data.user.id);
     }
   }, [data]);
 

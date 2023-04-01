@@ -8,11 +8,14 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { paths } from 'app/Routes/configRoutes';
 import { MaskedInput } from 'antd-mask-input';
+import { useLocalStorage } from 'shared/lib/hooks';
 import style from './ProductCreatePage.module.scss';
 
 export const ProductCreatePage = () => {
   const [title, setTitle] = useState('');
   const [radioValue, setRadioValue] = useState(1);
+
+  const [userId] = useLocalStorage('userId', '');
 
   const [createProduct, data] = useCreateProductMutation();
 
@@ -27,6 +30,7 @@ export const ProductCreatePage = () => {
     const valuesToSend = { ...values };
     valuesToSend.date = new Date();
     valuesToSend.views = 0;
+    valuesToSend.userId = userId;
     createProduct(valuesToSend);
     navigate(paths.USER);
   };
@@ -90,7 +94,7 @@ export const ProductCreatePage = () => {
         <Input.Group compact className={style.form_group}>
           <FormItem name="tel" label="Телефон">
             <MaskedInput
-              mask="+7(00)0000-0000"
+              mask="+7 (000) - 000 - 00 - 00"
             />
           </FormItem>
         </Input.Group>
@@ -103,6 +107,12 @@ export const ProductCreatePage = () => {
 
         <Input.Group compact className={style.form_group}>
           <FormItem name="src" label="Фотография">
+            <Input />
+          </FormItem>
+        </Input.Group>
+
+        <Input.Group compact className={style.form_group}>
+          <FormItem name="location" label="Адрес">
             <Input />
           </FormItem>
         </Input.Group>

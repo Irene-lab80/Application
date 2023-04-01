@@ -8,12 +8,20 @@
 }
 
 .feedwrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
-  flex-wrap: wrap;
   gap: 40px;
   max-width: 1200px;
   padding-top: 40px;
+
+  @include media-breakpoint-down(maxXl){
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-breakpoint-down(m-sm){
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .btnWrapper {
@@ -32,12 +40,13 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  // @include media-tablet {
-  //   padding: 0 15px;
-  // } 
-  // @include media-mobile {
-  //   padding: 0 24px;
-  // } 
+
+  @include media-breakpoint-down(md) {
+    padding: 0 15px;
+  } 
+  @include media-breakpoint-down(sm) {
+    padding: 0 24px;
+  } 
 }
 
 .title {
@@ -46,21 +55,15 @@
   line-height: 32px;
 }
 
-.scrollingWrapper {
+.nav {
   display: flex;
+  gap: 12px;
   flex-wrap: nowrap;
   overflow-x: auto;
-  padding: 40px 15px;
-
+  width: 100%;
   &::-webkit-scrollbar {
     display: none;
   }
-
-  // @include media-tablet {
-  //   width: 100vw;  
-  // } 
-  
-  
 }
 
 .menuItem {
@@ -91,11 +94,6 @@
   pointer-events: none;
 }
 
-.button {
+.button_loadmore {
   font-weight: 700;
-}
-
-.nav {
-  display: flex;
-  gap: 40px;
 }

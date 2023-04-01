@@ -4,14 +4,12 @@ import { filtersReducer } from './slice/filtersSlice/slice';
 
 import { platformApi } from './query';
 import { TestSlice } from './slice';
-import { filtersMainReducer } from './slice/filtersMainSlice/slice';
 
 const rootReducer = combineReducers({
   [platformApi.reducerPath]: platformApi.reducer,
   testState: TestSlice.tradingPointsReducer,
   userState: userReducer,
   filtersState: filtersReducer,
-  filtersMainState: filtersMainReducer,
 });
 
 export const store = configureStore({

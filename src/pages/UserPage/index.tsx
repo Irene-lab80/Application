@@ -9,18 +9,19 @@ import { useDeleteProductMutation, useGetProductsQuery } from 'store/query/Posts
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilters } from 'store/slice/filtersSlice';
-import { setOrder, setPage, setSearch, setSort } from 'store/slice/filtersSlice/slice';
+import { resetFilters, setOrder, setPage, setSearch, setSort, setUserId } from 'store/slice/filtersSlice/slice';
+import { useLocalStorage } from 'shared/lib/hooks';
 import style from './UserPage.module.scss';
 import { Content } from './Content';
 
 export const UserPage = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [isButtonActive, setIsButtonActive] = useState(false);
-
   const [openCard, setOpenCard] = useState<string | boolean>(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
   const [ascending, setAscending] = useState(true);
+
+  const [userId] = useLocalStorage('userId', '');
 
   const filters = useSelector(getFilters);
 
@@ -103,6 +104,16 @@ export const UserPage = () => {
 
     return () => document.body.removeEventListener('click', closeDropdown);
   }, []);
+
+  useEffect(() => {
+    if (userId && userId !== '') {
+      dispatch(setUserId(userId));
+    console.log('set user');
+    }
+    return () => {
+    dispatch(resetFilters());
+  };
+}, []);
 
   return (
     <div>

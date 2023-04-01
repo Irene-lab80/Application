@@ -38,10 +38,10 @@ export {
   Sidebar,
   Search,
   FilterMenu,
+  CardSmall,
 } from './components';
 
 export {
   MainLayout,
-  AuthLayout,
   UserLayout,
 } from './Layouts';

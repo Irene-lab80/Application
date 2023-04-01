@@ -9,11 +9,15 @@ import style from './Sidebar.module.scss';
 
 export const Sidebar = () => {
   const [avataName, setAvatarName] = useState('');
+
   const [userName, setUserName] = useLocalStorage('userName');
+  const [, setUserId] = useLocalStorage('userId');
+
   const navigate = useNavigate();
 
   const exitHandler = async () => {
     await setUserName('');
+    await setUserId('');
     cookies.remove('token');
     toast.success('Выход выполнен успешно!');
     navigate(paths.MAIN);

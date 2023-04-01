@@ -42,7 +42,6 @@ export {
   // layout
   MainLayout,
   UserLayout,
-  AuthLayout,
 } from './ui';
 
 export {
