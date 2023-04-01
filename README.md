@@ -1,4 +1,5 @@
-Deployment: https://application-r88w-1b87010dz-irene-lab80.vercel.app/
+Deployment: https://application-r88w.vercel.app/
+Backend: https://intriguing-ultra-mango.glitch.me/
 
 Please note that it might take a while for the backend to wake up due to glitch projects hosting rules.
 
