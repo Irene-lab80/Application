@@ -9,6 +9,9 @@ An app created with React/Redux/TypeScript
 
 ![1](https://user-images.githubusercontent.com/70843828/229290007-96fea495-56b1-4512-9a99-7febec01451c.gif)
 
+![login](https://user-images.githubusercontent.com/70843828/229290512-bdb1594b-91b2-4bf5-aefe-d6a6f20625b3.gif)
+
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
