@@ -4,7 +4,7 @@ import { CheckboxValueType } from 'antd/lib/checkbox/Group';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { optionsTags } from 'shared/utils';
-import { setPublish, setTags } from 'store/slice/filtersSlice/slice';
+import { setPage, setPublish, setTags } from 'store/slice/filtersSlice/slice';
 import { Button } from '../Button';
 import style from './FilterMenu.module.scss';
 
@@ -39,6 +39,7 @@ export const FilterMenu = ({ isOpen, setIsFilterOpen, setIsButtonActive }: TProp
     if (checkedTags !== null) {
       dispatch(setTags(checkedTags));
     }
+    dispatch(setPage(1));
     setIsFilterOpen(false);
     setIsButtonActive(true);
   };
