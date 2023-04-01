@@ -1,4 +1,4 @@
-Deploy: https://application-r88w.vercel.app/
+Deploy: [https://application-r88w.vercel.app/](https://application-r88w.vercel.app/)
 
 Please note that it might take a while for the backend to wake up due to glitch projects hosting rules.
 
@@ -30,6 +30,7 @@ Project is created with:
 * Universal-cookie: v4.0.4
 
 Backend is created with [Json-server](https://github.com/typicode/json-server) and [Json-server-auth](https://github.com/jeremyben/json-server-auth) and deployed on [Glitch](https://glitch.com)
+
 Deploy: https://intriguing-ultra-mango.glitch.me/
 
 
@@ -37,9 +38,11 @@ Deploy: https://intriguing-ultra-mango.glitch.me/
 ## Features
 1. Registration and authorization functionality
 2. My account, where user can:
-  * Create or edit ad
+  * Create ad
+  * Edit ad
   * Search/sort/filter through ads
-  
+3. Views counter
+4. Main page search and filters  
   
 
 ## Setup
